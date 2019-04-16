@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/laser.png-f4ce210a174cac85145e35b68cb78881.image"
+
+[deps]
+
+source_file="res://sprites/laser.png"
+dest_files=[ "res://.import/laser.png-f4ce210a174cac85145e35b68cb78881.image" ]
+
+[params]
+
