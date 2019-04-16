@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Talk2.wav-dc677dbdd76589519c97b6318fe1ac88.sample"
+
+[deps]
+
+source_file="res://media/8-bit/Talk2.wav"
+dest_files=[ "res://.import/Talk2.wav-dc677dbdd76589519c97b6318fe1ac88.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

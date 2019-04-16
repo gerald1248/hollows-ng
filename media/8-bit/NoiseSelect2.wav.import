@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/NoiseSelect2.wav-6ea615ff00176301b6cdd2512a8d8b46.sample"
+
+[deps]
+
+source_file="res://media/8-bit/NoiseSelect2.wav"
+dest_files=[ "res://.import/NoiseSelect2.wav-6ea615ff00176301b6cdd2512a8d8b46.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

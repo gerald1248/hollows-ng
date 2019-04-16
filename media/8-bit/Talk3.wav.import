@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Talk3.wav-dc632b1124b4481139860af20b84051c.sample"
+
+[deps]
+
+source_file="res://media/8-bit/Talk3.wav"
+dest_files=[ "res://.import/Talk3.wav-dc632b1124b4481139860af20b84051c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/joint.gd" type="Script" id=1]
+
+[node name="joint" type="DampedSpringJoint2D"]
+disable_collision = false
+length = 10.0
+rest_length = 10.0
+script = ExtResource( 1 )
+
