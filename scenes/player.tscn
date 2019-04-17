@@ -11,3 +11,12 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 2
 
+[node name="StaticBody2D" type="StaticBody2D" parent="ship"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship/StaticBody2D"]
+polygon = PoolVector2Array( 10, 0, -10, 10, -10, -10 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -10, -10, 10, 0, -10, 10, -10, -10 )
+

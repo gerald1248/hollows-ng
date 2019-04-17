@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://media/synth_ii.wav" type="AudioStream" id=2]
 [ext_resource path="res://scripts/audioloop.gd" type="Script" id=3]
-[ext_resource path="res://scenes/tilemap.tscn" type="PackedScene" id=4]
-[ext_resource path="res://tiles/tileset64x64.png" type="Texture" id=5]
+[ext_resource path="res://tiles/tileset64x64.png" type="Texture" id=4]
 
 [node name="main" type="Node2D"]
 
@@ -15,44 +14,34 @@ visible = false
 stream = ExtResource( 2 )
 script = ExtResource( 3 )
 
-[node name="tilemap" parent="." instance=ExtResource( 4 )]
-visible = false
-
 [node name="tileset" type="Node2D" parent="."]
 
 [node name="block" type="Sprite" parent="tileset"]
-visible = false
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 vframes = 4
 hframes = 4
 frame = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="tileset/block"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tileset/block/StaticBody2D"]
-visible = false
 polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
 
 [node name="ramp-se" type="Sprite" parent="tileset"]
-visible = false
 position = Vector2( 1, -1 )
 scale = Vector2( 1.125, 1.125 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 vframes = 4
 hframes = 4
 frame = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="tileset/ramp-se"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tileset/ramp-se/StaticBody2D"]
-visible = false
 polygon = PoolVector2Array( -9.77778, 9.77778, 8, -8, 8, 9.77778 )
 
 [node name="ramp-sw" type="Sprite" parent="tileset"]
-visible = false
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 vframes = 4
 hframes = 4
 frame = 3
@@ -63,31 +52,12 @@ frame = 3
 polygon = PoolVector2Array( -10, -10, 10, 10, -10, 10 )
 
 [node name="block-outline" type="Sprite" parent="tileset"]
-visible = false
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 vframes = 4
 hframes = 4
 
-[node name="ramp-nw" type="Sprite" parent="tileset"]
-visible = false
-texture = ExtResource( 5 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="StaticBody2D" type="StaticBody2D" parent="tileset/block-outline"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="tileset/ramp-nw"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tileset/ramp-nw/StaticBody2D"]
-polygon = PoolVector2Array( -10, 10, 10, -10, -10, -10 )
-
-[node name="ramp-ne" type="Sprite" parent="tileset"]
-texture = ExtResource( 5 )
-vframes = 4
-hframes = 4
-frame = 5
-
-[node name="StaticBody2D" type="StaticBody2D" parent="tileset/ramp-ne"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tileset/ramp-ne/StaticBody2D"]
-polygon = PoolVector2Array( -10, -10, 10, 10, 10, -10 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tileset/block-outline/StaticBody2D"]
+polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
 
