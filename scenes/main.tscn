@@ -9,33 +9,28 @@
 [node name="main" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-visible = false
 
 [node name="audioloop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="tilemap" parent="." instance=ExtResource( 4 )]
-visible = false
 
 [node name="tileset" type="Node2D" parent="."]
+visible = false
 
 [node name="block" type="Sprite" parent="tileset"]
-visible = false
 texture = ExtResource( 5 )
 vframes = 4
 hframes = 4
 frame = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="tileset/block"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tileset/block/StaticBody2D"]
-visible = false
 polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
 
 [node name="ramp-se" type="Sprite" parent="tileset"]
-visible = false
 position = Vector2( 1, -1 )
 scale = Vector2( 1.125, 1.125 )
 texture = ExtResource( 5 )
@@ -44,14 +39,11 @@ hframes = 4
 frame = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="tileset/ramp-se"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tileset/ramp-se/StaticBody2D"]
-visible = false
 polygon = PoolVector2Array( -9.77778, 9.77778, 8, -8, 8, 9.77778 )
 
 [node name="ramp-sw" type="Sprite" parent="tileset"]
-visible = false
 texture = ExtResource( 5 )
 vframes = 4
 hframes = 4
@@ -63,13 +55,11 @@ frame = 3
 polygon = PoolVector2Array( -10, -10, 10, 10, -10, 10 )
 
 [node name="block-outline" type="Sprite" parent="tileset"]
-visible = false
 texture = ExtResource( 5 )
 vframes = 4
 hframes = 4
 
 [node name="ramp-nw" type="Sprite" parent="tileset"]
-visible = false
 texture = ExtResource( 5 )
 vframes = 4
 hframes = 4
