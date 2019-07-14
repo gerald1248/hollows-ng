@@ -6,7 +6,6 @@ const ACC = 0.05 # acceleration %
 const DEC = 0.01 # deceleration %
 var motion = Vector2(0,0) # ship's actual move direction (not the desired move direction)
 var screen_size # set in _ready()
-# var screen_buffer = 8 # how far off screen before it wraps
 var grav = Vector2(0, 0.1)
 var reloading = 0.0
 
@@ -34,11 +33,6 @@ func _process(delta):
 	motion += grav * delta	
 	position += motion * MOVE_SPEED * delta # move using actual move direction * speed
 	
-	# SCREEN WRAP
-	# wraps position to the other side of the screen when moving off
-	# position.x = wrapf(position.x, -screen_buffer, screen_size.x + screen_buffer)
-	# position.y = wrapf(position.y, -screen_buffer, screen_size.y + screen_buffer)
-
 	# FIRE
 	reloading -= delta
 	if Input.is_key_pressed(KEY_SPACE):
@@ -51,4 +45,6 @@ func fire():
 		bullet.rotation = rotation
 		get_parent().add_child(bullet)
 		reloading = RELOAD_TIME
-	
+
+func crash():
+	position = Vector2(screen_size.x/2, screen_size.y/2)
