@@ -6,7 +6,7 @@ const ACC = 0.05 # acceleration %
 const DEC = 0.01 # deceleration %
 var motion = Vector2(0,0) # ship's actual move direction (not the desired move direction)
 var screen_size # set in _ready()
-var screen_buffer = 8 # how far off screen before it wraps
+# var screen_buffer = 8 # how far off screen before it wraps
 var grav = Vector2(0, 0.1)
 var reloading = 0.0
 
@@ -15,6 +15,8 @@ const RELOAD_TIME = 0.2
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	position = Vector2(screen_size.x/2, screen_size.y/2)
+	rotation = 1.5 * PI
 func _process(delta):
 	# TURNING
 	if Input.is_action_pressed("ui_left"): # if the left arrow key is pressed...
@@ -34,8 +36,8 @@ func _process(delta):
 	
 	# SCREEN WRAP
 	# wraps position to the other side of the screen when moving off
-	position.x = wrapf(position.x, -screen_buffer, screen_size.x + screen_buffer)
-	position.y = wrapf(position.y, -screen_buffer, screen_size.y + screen_buffer)
+	# position.x = wrapf(position.x, -screen_buffer, screen_size.x + screen_buffer)
+	# position.y = wrapf(position.y, -screen_buffer, screen_size.y + screen_buffer)
 
 	# FIRE
 	reloading -= delta
