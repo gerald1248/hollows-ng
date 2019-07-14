@@ -60,4 +60,3 @@ hframes = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tileset/block-outline/StaticBody2D"]
 polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
-
