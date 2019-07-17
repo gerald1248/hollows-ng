@@ -19,4 +19,3 @@ size = Vector2( 16, 32 )
 texture = SubResource( 2 )
 vframes = 2
 script = ExtResource( 1 )
-
