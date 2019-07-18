@@ -7,12 +7,12 @@ onready var ttl = 50
 
 func _process(delta):
 	move(delta)
-	removeWhenOffScreen()
+	removeIfDue()
 
 func move(delta):
 	global_position += velocity * delta
 	ttl -= 1
 
-func removeWhenOffScreen():
+func removeIfDue():
 	if ttl <= 0:
 		queue_free()

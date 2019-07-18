@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/tilemap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://tiles/tileset64x64.png" type="Texture" id=5]
 [ext_resource path="res://scenes/collision.gd" type="Script" id=6]
-[ext_resource path="res://sprites/starfield.png" type="Texture" id=7]
+[ext_resource path="res://sprites/starfield1024x1024.png" type="Texture" id=7]
 
 [node name="main" type="Node2D"]
 
@@ -90,10 +90,9 @@ polygon = PoolVector2Array( -10, -10, 10, 10, 10, -10 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.5, 0.5 )
+motion_scale = Vector2( 0.4, 0.4 )
 
-[node name="starfield" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 118.613, 92.2656 )
-scale = Vector2( 0.42908, 0.42908 )
+[node name="starfield1024x1024" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 247.114, 300.229 )
 texture = ExtResource( 7 )
 [connection signal="body_entered" from="player" to="player" method="_on_player_body_entered"]
