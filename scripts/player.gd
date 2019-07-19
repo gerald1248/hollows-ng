@@ -68,11 +68,11 @@ func _unhandled_input(event):
 		var index = event.get_index()
 		array_touch_state[index] = TOUCH_DRAG
 		var relativePosition = event.get_relative()
-		if (relativePosition.x < 0):
+		if (relativePosition.x < 0): # left
 			 rotation_degrees -= TURN_SPEED_DRAG
-		elif (relativePosition.x > 0):
+		elif (relativePosition.x > 0): # right
 			rotation_degrees += TURN_SPEED_DRAG
-		else:
+		else: # allow state switching (drag followed by acceleration)
 			array_touch_state[index] = TOUCH_DOWN
 	elif (event.get_class() == "InputEventScreenTouch"):
 		var index = event.get_index()
