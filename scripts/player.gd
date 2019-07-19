@@ -59,7 +59,7 @@ func _process(delta):
 		if (array_touch_state[i] == TOUCH_DOWN || array_touch_state[i] == TOUCH_DRAG):
 			array_touch_frames[i] = array_touch_frames[i] + 1
 
-		if (array_touch_frames[i] > TOUCH_DURATION_THRESHOLD):
+		if (array_touch_frames[i] > TOUCH_DURATION_THRESHOLD && array_touch_state[i] != TOUCH_DRAG):
 			movedir = Vector2(1,0).rotated(rotation)
 			motion = motion.linear_interpolate(movedir, ACC/TOUCH_THRUST_DENOMINATOR)
 
