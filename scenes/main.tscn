@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://media/synth_ii.wav" type="AudioStream" id=2]
 [ext_resource path="res://scripts/audioloop.gd" type="Script" id=3]
 [ext_resource path="res://scenes/tilemap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://tiles/tileset64x64.png" type="Texture" id=5]
-[ext_resource path="res://scenes/collision.gd" type="Script" id=6]
-[ext_resource path="res://sprites/starfield1024x1024.png" type="Texture" id=7]
+[ext_resource path="res://sprites/starfield1024x1024.png" type="Texture" id=6]
 
 [node name="main" type="Node2D"]
 
@@ -34,7 +33,6 @@ frame = 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tileset/block/StaticBody2D"]
 polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
-script = ExtResource( 6 )
 
 [node name="ramp-se" type="Sprite" parent="tileset"]
 position = Vector2( 1, -1 )
@@ -94,5 +92,5 @@ motion_scale = Vector2( 0.4, 0.4 )
 
 [node name="starfield1024x1024" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2( 247.114, 300.229 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 [connection signal="body_entered" from="player" to="player" method="_on_player_body_entered"]

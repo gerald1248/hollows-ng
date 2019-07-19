@@ -72,6 +72,8 @@ func _unhandled_input(event):
 			 rotation_degrees -= TURN_SPEED_DRAG
 		elif (relativePosition.x > 0):
 			rotation_degrees += TURN_SPEED_DRAG
+		else:
+			array_touch_state[index] = TOUCH_DOWN
 	elif (event.get_class() == "InputEventScreenTouch"):
 		var index = event.get_index()
 		if (index >= TOUCH_MAX):
