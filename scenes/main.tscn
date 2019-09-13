@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
@@ -12,22 +12,17 @@
 [ext_resource path="res://sprites/starfield512x512.png" type="Texture" id=10]
 [ext_resource path="res://scripts/hud.gd" type="Script" id=11]
 [ext_resource path="res://fonts/PressStart2P.ttf" type="DynamicFontData" id=12]
-[ext_resource path="res://scripts/continue.gd" type="Script" id=13]
-[ext_resource path="res://media/synth_i.wav" type="AudioStream" id=14]
-[ext_resource path="res://media/synth_ii.wav" type="AudioStream" id=15]
-[ext_resource path="res://media/synth_iii.wav" type="AudioStream" id=16]
-[ext_resource path="res://media/synth_iv.wav" type="AudioStream" id=17]
-[ext_resource path="res://media/synth_v.wav" type="AudioStream" id=18]
-[ext_resource path="res://media/blue-danube.ogg" type="AudioStream" id=19]
-[ext_resource path="res://media/8-bit/Shoot1.wav" type="AudioStream" id=20]
-[ext_resource path="res://media/8-bit/Coin1.wav" type="AudioStream" id=21]
-[ext_resource path="res://media/8-bit/Explosion1.wav" type="AudioStream" id=22]
-[ext_resource path="res://media/8-bit/Explosion3.wav" type="AudioStream" id=23]
-[ext_resource path="res://media/8-bit/Explosion2.wav" type="AudioStream" id=24]
-[ext_resource path="res://media/8-bit/Explosion4.wav" type="AudioStream" id=25]
-[ext_resource path="res://media/8-bit/NoiseSelect1.wav" type="AudioStream" id=26]
-[ext_resource path="res://media/8-bit/Shoot2.wav" type="AudioStream" id=27]
-[ext_resource path="res://media/8-bit/Fly1.wav" type="AudioStream" id=28]
+[ext_resource path="res://sprites/ship-aaa.png" type="Texture" id=13]
+[ext_resource path="res://scripts/continue.gd" type="Script" id=14]
+[ext_resource path="res://media/8-bit/Shoot1.wav" type="AudioStream" id=15]
+[ext_resource path="res://media/8-bit/Coin1.wav" type="AudioStream" id=16]
+[ext_resource path="res://media/8-bit/Explosion1.wav" type="AudioStream" id=17]
+[ext_resource path="res://media/8-bit/Explosion3.wav" type="AudioStream" id=18]
+[ext_resource path="res://media/8-bit/Explosion2.wav" type="AudioStream" id=19]
+[ext_resource path="res://media/8-bit/Explosion4.wav" type="AudioStream" id=20]
+[ext_resource path="res://media/8-bit/NoiseSelect1.wav" type="AudioStream" id=21]
+[ext_resource path="res://media/8-bit/Shoot2.wav" type="AudioStream" id=22]
+[ext_resource path="res://media/8-bit/Fly1.wav" type="AudioStream" id=23]
 
 [sub_resource type="Animation" id=1]
 resource_name = "thrust"
@@ -196,12 +191,48 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("training-fire-rect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.25098 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("training-turn-rect:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.25098 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("training-thrust-rect:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.25098 ), Color( 1, 1, 1, 0 ) ]
+}
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=11]
 size = 6
 font_data = ExtResource( 12 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=12]
 size = 8
 font_data = ExtResource( 12 )
 
@@ -293,25 +324,25 @@ valign = 1
 [node name="player01" type="Sprite" parent="hud"]
 position = Vector2( 312, 4 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 13 )
 vframes = 2
 
 [node name="player02" type="Sprite" parent="hud"]
 position = Vector2( 304, 4 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 13 )
 vframes = 2
 
 [node name="player03" type="Sprite" parent="hud"]
 position = Vector2( 296, 4 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 13 )
 vframes = 2
 
 [node name="player04" type="Sprite" parent="hud"]
 position = Vector2( 288, 4 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 13 )
 vframes = 2
 
 [node name="training-fire" type="Label" parent="hud"]
@@ -374,16 +405,21 @@ color = Color( 1, 1, 1, 0.25098 )
 [node name="training-animation" type="AnimationPlayer" parent="hud"]
 anims/training = SubResource( 10 )
 
-[node name="subtitles" type="Label" parent="hud"]
+[node name="credits" type="Label" parent="hud"]
 visible = false
-margin_top = 164.0
+margin_top = 110.0
 margin_right = 320.0
-margin_bottom = 178.0
-custom_fonts/font = SubResource( 12 )
+margin_bottom = 152.0
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.666667, 0.666667, 0.666667, 1 )
-text = "[Blue Danube playing]"
+text = "CREDITS
+Based on Thrust by Jeremy C. Smith, Firebird, 1986
+Richard Strauss, Blue Danube, European Archive, CC
+Sound effects by @Shades, CC
+Explosions by Akimasa Shimobayashi, CC
+Godot Engine by Juan Linietsky, Ariel Manzur and
+Godot Engine Contributors, MIT"
 align = 1
-valign = 1
 
 [node name="continue-container" type="VBoxContainer" parent="hud"]
 visible = false
@@ -396,55 +432,36 @@ margin_bottom = 98.0
 pause_mode = 2
 margin_right = 120.0
 margin_bottom = 14.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0.666667, 0.666667, 0.666667, 1 )
 text = "Continue"
-script = ExtResource( 13 )
-
-[node name="loop-i" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-
-[node name="loop-ii" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 15 )
-
-[node name="loop-iii" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 16 )
-
-[node name="loop-iv" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 17 )
-
-[node name="loop-v" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 18 )
-volume_db = -10.0
-
-[node name="blue-danube" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 19 )
+script = ExtResource( 14 )
 
 [node name="sample-laser" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 20 )
+stream = ExtResource( 15 )
 
 [node name="sample-coin" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 21 )
+stream = ExtResource( 16 )
 
 [node name="sample-explosion" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 22 )
+stream = ExtResource( 17 )
 
 [node name="sample-explosion-tower" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 23 )
+stream = ExtResource( 18 )
 
 [node name="sample-explosion-brick" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 24 )
+stream = ExtResource( 19 )
 
 [node name="sample-explosion-weight" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 25 )
+stream = ExtResource( 20 )
 
 [node name="sample-explosion-surface" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 26 )
+stream = ExtResource( 21 )
 
 [node name="sample-enemy-laser" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 27 )
+stream = ExtResource( 22 )
 
 [node name="sample-fly" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 28 )
+stream = ExtResource( 23 )
 
 [connection signal="body_entered" from="player" to="player" method="_on_player_body_entered"]

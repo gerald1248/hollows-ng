@@ -4,15 +4,6 @@ func _ready():
 	get_tree().set_auto_accept_quit(false)
 	get_tree().set_quit_on_go_back(false)
 
-	var playLoop = global.loop
-
-	# finale
-	if global.level_index == global.level_count - 1 && global.loop || global.fx:
-		playLoop = true
-
-	if playLoop:
-		var loop = global.loops[global.loop_index]
-		get_node(loop).play()
 	if global.fx:
 		get_node("/root/main/sample-fly").play()
 

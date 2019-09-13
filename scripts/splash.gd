@@ -23,7 +23,7 @@ func _draw():
 	
 func update_button_labels():
 	fx_button.text = "FX ON" if global.fx else "FX OFF"
-	music_button.text = "Music ON" if global.loop else "Music OFF"
+	music_button.text = "Music ON" if global.music else "Music OFF"
 
 func _on_start_button_pressed():
 	get_tree().change_scene("res://scenes/main.tscn")
@@ -37,8 +37,9 @@ func _on_fx_button_pressed():
 	update_button_labels()
 
 func _on_music_button_pressed():
-	global.loop = !global.loop
+	global.music = !global.music
 	update_button_labels()
+	global.set_music(global.music)
 
 func _notification(what):
 	match (what):

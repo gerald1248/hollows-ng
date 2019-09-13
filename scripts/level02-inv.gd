@@ -7,7 +7,7 @@ const weight_start = Vector2(-20.0, 10.0)
 const player_rotation = PI * 0.5
 const gravity = -0.5
 const training = false
-const greeting = "Level 4"
+const greeting = "Level 4 reverse gravity"
 
 func _ready():
 	pass

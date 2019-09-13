@@ -54,6 +54,7 @@ func _ready():
 			terrain = load("res://scenes/level02-inv.tscn").instance()
 		5:
 			terrain = load("res://scenes/level-finale.tscn").instance()
+			get_parent().get_node("hud/credits").show()
 
 	get_parent().call_deferred("add_child", terrain)
 
@@ -213,7 +214,7 @@ func _physics_process(delta):
 	set_applied_torque(rotation_dir * spin_thrust)
 
 func fire():
-	if reloading > 0.0:
+	if reloading > 0.0 || exploding:
 		return
 	if global.fx:
 		get_parent().get_node("sample-laser").play()
@@ -224,7 +225,7 @@ func fire():
 	reloading = RELOAD_TIME
 
 func acquire_target():
-	if target_acquired:
+	if target_acquired || exploding:
 		return
 	global.add_to_score(500)
 	if global.fx:
@@ -234,6 +235,8 @@ func acquire_target():
 	target_acquired = true
 
 func play_thrust_animation():
+	if exploding:
+		return
 	var animation = get_node("engine")
 	animation.play("thrust")
 
@@ -241,19 +244,29 @@ func explode():
 	if exploding:
 		return
 	exploding = true
-	init_touch_state()
-	play_sound_once("sample-explosion")
 
 	# ensure ship stops here
 	gravity_scale = 0.0
 	linear_velocity = Vector2()
+	mode = RigidBody2D.MODE_STATIC
+
+	
+	can_sleep = true
 	sleeping = true
+	angular_velocity = 0.0
+	pause_mode = true
+	get_node("Camera2D").pause_mode = true
+
+	init_touch_state()
+	play_sound_once("sample-explosion")
 
 	global.lives = global.lives - 1
 	if !global.lives:
+		global.save_highscore()
 		global.level_index = 0
 		get_parent().get_node("hud").alert("Game over")
 		global.lives = global.LIVES_MAX
+		global.score = 0
 		game_over = true
 
 	var animation = get_node("explosion")
