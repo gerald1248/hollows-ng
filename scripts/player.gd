@@ -45,14 +45,16 @@ func _ready():
 		0:
 			terrain = load("res://scenes/level01.tscn").instance()
 		1:
-			terrain = load("res://scenes/level02.tscn").instance()
+			terrain = load("res://scenes/level01-1.tscn").instance()	
 		2:
-			terrain = load("res://scenes/level03.tscn").instance()
+			terrain = load("res://scenes/level02.tscn").instance()
 		3:
-			terrain = load("res://scenes/level04.tscn").instance()
+			terrain = load("res://scenes/level03.tscn").instance()
 		4:
-			terrain = load("res://scenes/level02-inv.tscn").instance()
+			terrain = load("res://scenes/level04.tscn").instance()
 		5:
+			terrain = load("res://scenes/level02-inv.tscn").instance()
+		6:
 			terrain = load("res://scenes/level-finale.tscn").instance()
 			get_parent().get_node("hud/credits").show()
 
