@@ -5,7 +5,7 @@ const SCORE_PATH = "user://highscore.data"
 
 var LIVES_MAX = 5
 var lives = LIVES_MAX
-var level_index = 5 # 0 for training mission
+var level_index = 0 # 0 for training mission
 var level_count = 6
 var fx = true
 var music = false
