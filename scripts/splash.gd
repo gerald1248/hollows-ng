@@ -35,11 +35,13 @@ func _on_skip_button_pressed():
 func _on_fx_button_pressed():
 	global.fx = !global.fx
 	update_button_labels()
+	global.save_config()
 
 func _on_music_button_pressed():
 	global.music = !global.music
 	update_button_labels()
 	global.set_music(global.music)
+	global.save_config()
 
 func _notification(what):
 	match (what):

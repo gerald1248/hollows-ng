@@ -1,31 +1,35 @@
 extends Node
 
 const TILE_LENGTH = 16
-const SCORE_PATH = "user://highscore.data"
+const CONFIG_PATH = "user://hollows.data"
 
 var LIVES_MAX = 5
 var lives = LIVES_MAX
 var level_index = 0 # 0 for training mission
 var level_count = 7
-var fx = true
+var fx = false
 var music = false
 var score = 0
 var highscore = 0
 
 func _ready():
-	load_highscore()
+	load_config()
 
-func load_highscore():
+func load_config():
 	var file = File.new()
-	if not file.file_exists(SCORE_PATH): return
-	file.open(SCORE_PATH, File.READ)
+	if not file.file_exists(CONFIG_PATH): return
+	file.open(CONFIG_PATH, File.READ)
 	highscore = file.get_var()
+	fx = file.get_var()
+	music = file.get_var()
 	file.close()
 
-func save_highscore():
+func save_config():
 	var file = File.new()
-	file.open(SCORE_PATH, File.WRITE)
+	file.open(CONFIG_PATH, File.WRITE)
 	file.store_var(highscore)
+	file.store_var(fx)
+	file.store_var(music)
 	file.close()
 
 func set_music(b):
