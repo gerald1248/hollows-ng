@@ -14,6 +14,7 @@ var highscore = 0
 
 func _ready():
 	load_config()
+	set_music(music)
 
 func load_config():
 	var file = File.new()
