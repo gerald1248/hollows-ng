@@ -191,7 +191,12 @@ func _draw():
 		draw_line(pos_a, pos_b, Color.white, 1.2, false)
 
 func _integrate_forces(state):
+	if exploding:
+		self.apply_central_impulse(-self.linear_velocity)
+		return
+
 	var origin = state.transform.get_origin()
+
 	if abs(origin.x) > MAP_LIMIT || abs(origin.y) > MAP_LIMIT :
 		if target_acquired:
 			if global.level_index > 0:
@@ -252,19 +257,21 @@ func explode():
 	linear_velocity = Vector2()
 	mode = RigidBody2D.MODE_STATIC
 
-	
 	can_sleep = true
 	sleeping = true
 	angular_velocity = 0.0
-	pause_mode = true
-	get_node("Camera2D").pause_mode = true
 
 	init_touch_state()
+
+	if target_acquired:
+		target_acquired = false
+		joint.queue_free()
+
 	play_sound_once("sample-explosion")
 
 	global.lives = global.lives - 1
-	if !global.lives:
-		global.save_highscore()
+	if global.lives <= 0:
+		global.save_config()
 		global.level_index = 0
 		get_parent().get_node("hud").alert("Game over")
 		global.lives = global.LIVES_MAX
