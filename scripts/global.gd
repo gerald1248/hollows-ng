@@ -1,9 +1,9 @@
 extends Node
 
-const TILE_LENGTH = 16
 const CONFIG_PATH = "user://hollows.data"
+const LIVES_MAX = 5
+const TILE_LENGTH = 16
 
-var LIVES_MAX = 5
 var lives = LIVES_MAX
 var level_index = 0 # 0 for training mission
 var level_count = 7

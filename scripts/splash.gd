@@ -13,7 +13,6 @@ func _ready():
 	viewportSize = Vector2(get_parent().size.x/4, get_parent().size.y/4)
 	global.set_viewport_size(viewportSize)
 	$player.position = Vector2(viewportSize.x/2, viewportSize.y/2 - 16)
-	print($player.position)
 	rng.randomize()
 	var rand = rng.randf_range(0.0, 1.0)
 	$player.rotation_degrees = 360 * rand
