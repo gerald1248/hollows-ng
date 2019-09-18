@@ -5,7 +5,7 @@ const CONFIG_PATH = "user://hollows.data"
 
 var LIVES_MAX = 5
 var lives = LIVES_MAX
-var level_index = 6 # 0 for training mission
+var level_index = 0 # 0 for training mission
 var level_count = 7
 var fx = false
 var music = false
