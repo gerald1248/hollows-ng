@@ -5,12 +5,13 @@ const CONFIG_PATH = "user://hollows.data"
 
 var LIVES_MAX = 5
 var lives = LIVES_MAX
-var level_index = 0 # 0 for training mission
+var level_index = 6 # 0 for training mission
 var level_count = 7
 var fx = false
 var music = false
 var score = 0
 var highscore = 0
+var viewport_size
 
 func _ready():
 	load_config()
@@ -32,6 +33,9 @@ func save_config():
 	file.store_var(fx)
 	file.store_var(music)
 	file.close()
+
+func set_viewport_size(v2):
+	viewport_size = v2
 
 func set_music(b):
 	var node = get_node("blue-danube")

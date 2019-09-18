@@ -4,11 +4,16 @@ var rng = RandomNumberGenerator.new()
 
 var fx_button
 var music_button
+var viewportSize
 
 func _ready():
 	fx_button = get_node("vbox").get_node("hbox_controls").get_node("fx_button")
 	music_button = get_node("vbox").get_node("hbox_controls").get_node("music_button")
 	update_button_labels()
+	viewportSize = Vector2(get_parent().size.x/4, get_parent().size.y/4)
+	global.set_viewport_size(viewportSize)
+	$player.position = Vector2(viewportSize.x/2, viewportSize.y/2 - 16)
+	print($player.position)
 	rng.randomize()
 	var rand = rng.randf_range(0.0, 1.0)
 	$player.rotation_degrees = 360 * rand
@@ -17,6 +22,7 @@ func _ready():
 	if global.highscore > 0:
 		var footer = get_node("/root/splash/footer")
 		footer.set_text(String("High score %d" % global.highscore))
+		footer.rect_size.x = viewportSize.x
 
 func _draw():
 	draw_line($player.position, $weight.position, Color.white, 1.2, false)
