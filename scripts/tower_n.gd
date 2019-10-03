@@ -12,7 +12,8 @@ func _on_tower_n_body_entered(body):
 			get_parent().get_node("player").explode()
 		"weight":
 			destroy()
-			get_node("/root/main/sample-explosion-tower").play()
+			if global.fx:
+				get_node("/root/main/sample-explosion-tower").play()
 
 func destroy():
 	queue_free()

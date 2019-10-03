@@ -443,9 +443,6 @@ texture = ExtResource( 15 )
 texture_scale = 0.4
 shadow_enabled = true
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.25098, 0.25098, 0.25098, 1 )
-
 [node name="sample-laser" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 

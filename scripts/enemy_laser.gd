@@ -47,7 +47,8 @@ func _on_laser_body_entered(body):
 func explode():
 	deactivated = true
 	var sprite = get_node("explosion").get_node("Sprite")
+	velocity = Vector2()
 	sprite.position = position
 	sprite.show()
 	get_node("explosion").play("explosion")
-	self.hide()
+	$Sprite.hide()
