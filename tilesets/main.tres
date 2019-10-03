@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=15 format=2]
+[gd_resource type="TileSet" load_steps=14 format=2]
 
 [ext_resource path="res://tiles/tileset64x64.png" type="Texture" id=1]
 
@@ -13,9 +13,6 @@ points = PoolVector2Array( 8.39469, 8.09661, 16, 0, 16, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
-
-[sub_resource type="OccluderPolygon2D" id=5]
-polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -225,7 +222,6 @@ points = PoolVector2Array( 8.00315, 7.36658, 0.712975, 0.637192, 15.0129, 0.8241
 12/region = Rect2( 48, 32, 16, 16 )
 12/tile_mode = 0
 12/occluder_offset = Vector2( 0, 0 )
-12/occluder = SubResource( 5 )
 12/navigation_offset = Vector2( 0, 0 )
 12/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
@@ -235,4 +231,14 @@ points = PoolVector2Array( 8.00315, 7.36658, 0.712975, 0.637192, 15.0129, 0.8241
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 12/z_index = 0
+13/name = "wall"
+13/texture = ExtResource( 1 )
+13/tex_offset = Vector2( 0, 0 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 0, 48, 16, 16 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shapes = [  ]
+13/z_index = 0
 

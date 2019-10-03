@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/laser.gd" type="Script" id=1]
 [ext_resource path="res://sprites/laser.png" type="Texture" id=2]
-[ext_resource path="res://animations/explosion.tres" type="Animation" id=3]
-[ext_resource path="res://sprites/explosion-bw-16x16.png" type="Texture" id=4]
+[ext_resource path="res://sprites/spot.png" type="Texture" id=3]
+[ext_resource path="res://animations/explosion.tres" type="Animation" id=4]
+[ext_resource path="res://sprites/explosion-bw-16x16.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 2.74601
@@ -18,16 +19,20 @@ vframes = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 0.25
+
 [node name="explosion" type="AnimationPlayer" parent="."]
-anims/explosion = ExtResource( 3 )
+anims/explosion = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="explosion"]
 visible = false
 position = Vector2( -0.5, -0.5 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 vframes = 4
 hframes = 8
-frame = 7
+frame = 30
 
 [connection signal="area_entered" from="." to="." method="_on_laser_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_laser_body_entered"]

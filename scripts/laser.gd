@@ -57,4 +57,4 @@ func explode():
 	sprite.position = position
 	sprite.show()
 	get_node("explosion").play("explosion")
-	self.hide()
+	$Sprite.hide()
