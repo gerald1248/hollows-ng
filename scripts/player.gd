@@ -179,6 +179,7 @@ func _process(delta):
 	get_input()
 	engine.position = position
 	engine.rotation = rotation
+	get_parent().get_node("Light2D").position = position
 	if reloading > 0.0:
 		reloading -= 0.1
 	update()
@@ -219,6 +220,7 @@ func _integrate_forces(state):
 func _physics_process(delta):
 	set_applied_force(thrust.rotated(rotation))
 	set_applied_torque(rotation_dir * spin_thrust)
+
 
 func fire():
 	if reloading > 0.0 || exploding:
