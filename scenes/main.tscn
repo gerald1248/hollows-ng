@@ -439,8 +439,10 @@ text = "Continue"
 script = ExtResource( 14 )
 
 [node name="Light2D" type="Light2D" parent="."]
+light_mask = 524288
 texture = ExtResource( 15 )
-texture_scale = 0.4
+texture_scale = 0.2
+energy = 1.5
 shadow_enabled = true
 
 [node name="sample-laser" type="AudioStreamPlayer" parent="."]

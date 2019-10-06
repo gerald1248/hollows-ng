@@ -10,6 +10,3 @@ collision_use_kinematic = true
 format = 1
 script = ExtResource( 2 )
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.376471, 0.376471, 0.376471, 1 )
-
