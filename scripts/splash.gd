@@ -5,6 +5,10 @@ var rng = RandomNumberGenerator.new()
 var fx_button
 var music_button
 var viewportSize
+var player_box
+var player_box_size
+var player
+var weight
 
 func _ready():
 	fx_button = get_node("vbox").get_node("hbox_controls").get_node("fx_button")
@@ -15,17 +19,23 @@ func _ready():
 	#$player.position = Vector2(viewportSize.x/2, viewportSize.y/2 - 16)
 	rng.randomize()
 	var rand = rng.randf_range(0.0, 1.0)
-	#$player.rotation_degrees = 360 * rand
-	#$weight.position = $player.position + Vector2(25 * cos(2 * PI * -rand), 25 * sin(2 * PI * -rand))
-	#$weight.rotation_degrees = 360 * rand
+	
+	player_box = get_node("vbox/hbox_player")
+	player_box_size = player_box.rect_size
+	player = get_node("vbox/hbox_player/player")
+	weight = get_node("vbox/hbox_player/weight")
+	player.position = Vector2(player_box_size.x / 2, player_box_size.y / 2)
+	player.rotation_degrees = 360 * rand
+	weight.position = player.position + Vector2(25 * cos(2 * PI * -rand), 25 * sin(2 * PI * -rand))
+	weight.rotation_degrees = 360 * rand
 	if global.highscore > 0:
 		var footer = get_node("/root/splash/vbox/hbox_footer/footer")
 		footer.set_text(String("High score %d" % global.highscore))
 		footer.rect_size.x = viewportSize.x
 
 func _draw():
-	pass
-	#draw_line($player.position, $weight.position, Color.white, 1.2, false)
+	var yAdjust = Vector2(0.0, player_box.rect_position.y)
+	draw_line(player.position + yAdjust, weight.position + yAdjust, Color.white, 1.2, false)
 	
 func update_button_labels():
 	fx_button.text = "FX ON" if global.fx else "FX OFF"

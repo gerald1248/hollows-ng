@@ -59,15 +59,11 @@ custom_colors/font_color = Color( 0.666667, 0.666667, 0.666667, 1 )
 text = "Hollows"
 script = ExtResource( 3 )
 
-[node name="hbox_spacer" type="HBoxContainer" parent="vbox"]
+[node name="hbox_player" type="HBoxContainer" parent="vbox"]
 margin_top = 52.0
 margin_right = 320.0
-margin_bottom = 52.0
-
-[node name="hbox_player" type="HBoxContainer" parent="vbox"]
-margin_top = 72.0
-margin_right = 320.0
 margin_bottom = 72.0
+rect_min_size = Vector2( 0, 20 )
 size_flags_horizontal = 3
 alignment = 1
 
