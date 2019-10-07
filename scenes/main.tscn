@@ -6,7 +6,7 @@
 [ext_resource path="res://scripts/engine.gd" type="Script" id=4]
 [ext_resource path="res://sprites/engine.png" type="Texture" id=5]
 [ext_resource path="res://scripts/explosion.gd" type="Script" id=6]
-[ext_resource path="res://sprites/explosion-bw-32x32.png" type="Texture" id=7]
+[ext_resource path="res://sprites/explosion-bw-minus100-32x32.png" type="Texture" id=7]
 [ext_resource path="res://scripts/weight.gd" type="Script" id=8]
 [ext_resource path="res://sprites/weight.png" type="Texture" id=9]
 [ext_resource path="res://sprites/starfield512x512.png" type="Texture" id=10]
@@ -132,6 +132,8 @@ tracks/2/keys = {
 
 [sub_resource type="DynamicFont" id=5]
 size = 8
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=6]
@@ -141,16 +143,19 @@ font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 6
+outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 6
+outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 6
+outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 12 )
 
@@ -441,7 +446,7 @@ script = ExtResource( 14 )
 [node name="Light2D" type="Light2D" parent="."]
 light_mask = 524288
 texture = ExtResource( 15 )
-texture_scale = 0.2
+texture_scale = 0.3
 energy = 1.5
 shadow_enabled = true
 
