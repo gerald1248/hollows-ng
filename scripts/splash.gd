@@ -12,19 +12,20 @@ func _ready():
 	update_button_labels()
 	viewportSize = Vector2(get_parent().size.x/4, get_parent().size.y/4)
 	global.set_viewport_size(viewportSize)
-	$player.position = Vector2(viewportSize.x/2, viewportSize.y/2 - 16)
+	#$player.position = Vector2(viewportSize.x/2, viewportSize.y/2 - 16)
 	rng.randomize()
 	var rand = rng.randf_range(0.0, 1.0)
-	$player.rotation_degrees = 360 * rand
-	$weight.position = $player.position + Vector2(25 * cos(2 * PI * -rand), 25 * sin(2 * PI * -rand))
-	$weight.rotation_degrees = 360 * rand
+	#$player.rotation_degrees = 360 * rand
+	#$weight.position = $player.position + Vector2(25 * cos(2 * PI * -rand), 25 * sin(2 * PI * -rand))
+	#$weight.rotation_degrees = 360 * rand
 	if global.highscore > 0:
-		var footer = get_node("/root/splash/footer")
+		var footer = get_node("/root/splash/vbox/hbox_footer/footer")
 		footer.set_text(String("High score %d" % global.highscore))
 		footer.rect_size.x = viewportSize.x
 
 func _draw():
-	draw_line($player.position, $weight.position, Color.white, 1.2, false)
+	pass
+	#draw_line($player.position, $weight.position, Color.white, 1.2, false)
 	
 func update_button_labels():
 	fx_button.text = "FX ON" if global.fx else "FX OFF"
