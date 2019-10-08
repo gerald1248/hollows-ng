@@ -10,13 +10,12 @@ var player_box_size
 var player
 var weight
 
-func _ready():
+func _ready():	
 	fx_button = get_node("vbox").get_node("hbox_controls").get_node("fx_button")
 	music_button = get_node("vbox").get_node("hbox_controls").get_node("music_button")
 	update_button_labels()
 	viewportSize = Vector2(get_parent().size.x/4, get_parent().size.y/4)
 	global.set_viewport_size(viewportSize)
-	#$player.position = Vector2(viewportSize.x/2, viewportSize.y/2 - 16)
 	rng.randomize()
 	var rand = rng.randf_range(0.0, 1.0)
 	

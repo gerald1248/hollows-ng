@@ -130,15 +130,15 @@ tracks/2/keys = {
 } ]
 }
 
+[sub_resource type="DynamicFont" id=6]
+size = 4
+extra_spacing_top = 1
+font_data = ExtResource( 12 )
+
 [sub_resource type="DynamicFont" id=5]
 size = 8
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 12 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 4
-extra_spacing_top = 1
 font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=7]
@@ -313,43 +313,98 @@ texture = ExtResource( 10 )
 [node name="hud" type="CanvasLayer" parent="."]
 script = ExtResource( 11 )
 
-[node name="alert" type="Label" parent="hud"]
+[node name="vbox" type="VBoxContainer" parent="hud"]
 margin_right = 320.0
-margin_bottom = 60.0
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0.666667, 0.666667, 0.666667, 1 )
-align = 1
-valign = 1
+margin_bottom = 180.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="score" type="Label" parent="hud"]
+[node name="topbar" type="HBoxContainer" parent="hud/vbox"]
+margin_right = 320.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 320, 8 )
+size_flags_horizontal = 3
+
+[node name="left" type="VBoxContainer" parent="hud/vbox/topbar"]
+margin_bottom = 8.0
+
+[node name="score" type="Label" parent="hud/vbox/topbar/left"]
+margin_bottom = 5.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.666667, 0.666667, 0.666667, 1 )
 align = 1
 valign = 1
 
-[node name="player01" type="Sprite" parent="hud"]
-position = Vector2( 312, 4 )
+[node name="middle" type="VBoxContainer" parent="hud/vbox/topbar"]
+margin_left = 4.0
+margin_right = 284.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="right4" type="VBoxContainer" parent="hud/vbox/topbar"]
+margin_left = 288.0
+margin_right = 292.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 4, 8 )
+
+[node name="player04" type="Sprite" parent="hud/vbox/topbar/right4"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 13 )
+centered = false
 vframes = 2
 
-[node name="player02" type="Sprite" parent="hud"]
-position = Vector2( 304, 4 )
+[node name="right3" type="VBoxContainer" parent="hud/vbox/topbar"]
+margin_left = 296.0
+margin_right = 300.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 4, 0 )
+
+[node name="player03" type="Sprite" parent="hud/vbox/topbar/right3"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 13 )
+centered = false
 vframes = 2
 
-[node name="player03" type="Sprite" parent="hud"]
-position = Vector2( 296, 4 )
+[node name="right2" type="VBoxContainer" parent="hud/vbox/topbar"]
+margin_left = 304.0
+margin_right = 308.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 4, 8 )
+
+[node name="player02" type="Sprite" parent="hud/vbox/topbar/right2"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 13 )
+centered = false
 vframes = 2
 
-[node name="player04" type="Sprite" parent="hud"]
-position = Vector2( 288, 4 )
+[node name="right1" type="VBoxContainer" parent="hud/vbox/topbar"]
+margin_left = 312.0
+margin_right = 320.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+
+[node name="player01" type="Sprite" parent="hud/vbox/topbar/right1"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 13 )
+centered = false
 vframes = 2
+
+[node name="alertbar" type="HBoxContainer" parent="hud/vbox"]
+margin_top = 12.0
+margin_right = 320.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="alert" type="Label" parent="hud/vbox/alertbar"]
+margin_left = 160.0
+margin_right = 160.0
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+align = 1
+valign = 1
 
 [node name="training-fire" type="Label" parent="hud"]
 visible = false
