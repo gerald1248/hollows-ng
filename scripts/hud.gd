@@ -25,9 +25,9 @@ func _ready():
 		get_node("training-thrust-rect").show()
 		get_node("training-animation").play("training")
 	
-	#$vbox.rect_position = OS.get_window_safe_area().position
-	#$vbox.rect_size = OS.get_window_safe_area().size
-	get_node("vbox/topbar").rect_size.x = $vbox.rect_size.x/4
+	var area = OS.get_window_safe_area()
+	$vbox.rect_position = Vector2(area.position.x/4, area.position.y/4)
+	$vbox.rect_size = Vector2(area.size.x/4, area.size.y/4)
 
 func layout(viewport):
 	pass
