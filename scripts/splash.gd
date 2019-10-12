@@ -14,8 +14,6 @@ func _ready():
 	fx_button = get_node("vbox").get_node("hbox_controls").get_node("fx_button")
 	music_button = get_node("vbox").get_node("hbox_controls").get_node("music_button")
 	update_button_labels()
-	viewportSize = Vector2(get_parent().size.x/4, get_parent().size.y/4)
-	global.set_viewport_size(viewportSize)
 	rng.randomize()
 	var rand = rng.randf_range(0.0, 1.0)
 	
@@ -30,11 +28,13 @@ func _ready():
 	if global.highscore > 0:
 		var footer = get_node("/root/splash/vbox/hbox_footer/footer")
 		footer.set_text(String("High score %d" % global.highscore))
-		footer.rect_size.x = viewportSize.x
+		footer.rect_size.x = global.viewport_size.x
 
 func _draw():
-	var yAdjust = Vector2(0.0, player_box.rect_position.y)
-	draw_line(player.position + yAdjust, weight.position + yAdjust, Color.white, 1.2, false)
+	# iPad _only_ requires a y-adjustment to the line drawn
+	# 30 seems to be a workable offset
+	var y_adjust = Vector2(0.0, 30.0) if global.is_ipad else Vector2()
+	draw_line(player.get_global_position() + y_adjust, weight.get_global_position() + y_adjust, Color.white, 1.2, false)
 	
 func update_button_labels():
 	fx_button.text = "FX ON" if global.fx else "FX OFF"

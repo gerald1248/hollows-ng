@@ -11,11 +11,29 @@ var fx = false
 var music = false
 var score = 0
 var highscore = 0
+var safe_area
+var safe_area_position
+var safe_area_size
 var viewport_size
+var is_ipad
 
 func _ready():
 	load_config()
 	set_music(music)
+	safe_area = OS.get_window_safe_area()
+	safe_area_position = Vector2(safe_area.position.x/4, safe_area.position.y/4)
+	safe_area_size = Vector2(safe_area.size.x/4, safe_area.size.y/4)
+	viewport_size = Vector2(OS.window_size.x/4, OS.window_size.y/4)
+
+	# iPad requires an exception for custom drawing
+	# TODO: check if later versions report OS name as iPad OS?
+	is_ipad = OS.get_name() == "iOS" && viewport_size.x/viewport_size.y < 1.34
+
+	# adjust for devices with base width * 1.5 and up
+	# always apply on iOS
+	if viewport_size.x > 480 || OS.get_name() == "iOS":
+		safe_area_size = Vector2(320, 180)
+		viewport_size = Vector2(320 + safe_area_position.x, 240 if is_ipad else 180)
 
 func load_config():
 	var file = File.new()

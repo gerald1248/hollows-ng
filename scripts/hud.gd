@@ -25,37 +25,44 @@ func _ready():
 		get_node("training-thrust-rect").show()
 		get_node("training-animation").play("training")
 	
-	var area = OS.get_window_safe_area()
-	$vbox.rect_position = Vector2(area.position.x/4, area.position.y/4)
-	$vbox.rect_size = Vector2(area.size.x/4, area.size.y/4)
+	$vbox.rect_position = global.safe_area_position
+	$vbox.rect_size = global.safe_area_size
 
 func layout(viewport):
-	pass
-#	$alert.rect_size.x = viewport.x
-#	$player01.transform.origin.x = viewport.x - 4
-#	$player02.transform.origin.x = viewport.x - 12
-#	$player03.transform.origin.x = viewport.x - 20
-#	$player04.transform.origin.x = viewport.x - 28
-#	$"training-fire".rect_size.x = viewport.x
-#	$"training-turn".rect_size.x = viewport.x / 2
-#	$"training-thrust".margin_left = viewport.x / 2
-#	$"training-thrust".rect_size.x = viewport.x / 2
-#	$"training-fire-rect".rect_size.x = viewport.x
-#	$"training-fire-rect".rect_pivot_offset.x = viewport.x/2
-#	$"training-fire-rect".rect_pivot_offset.y = viewport.y/4
-#	$"training-turn-rect".rect_size.x = viewport.x/2
-#	$"training-turn-rect".rect_position.y = viewport.y/2
-#	$"training-turn-rect".rect_pivot_offset.x = viewport.x/4
-#	$"training-turn-rect".rect_pivot_offset.y = viewport.y/4
-#	$"training-thrust-rect".rect_size.x = viewport.x/2
-#	$"training-thrust-rect".rect_position.x = viewport.x/2
-#	$"training-thrust-rect".rect_position.y = viewport.y/2
-#	$"training-thrust-rect".rect_pivot_offset.x = viewport.x/4
-#	$"training-thrust-rect".rect_pivot_offset.y = viewport.y/4
-#	$credits.rect_position.y = viewport.y/2 + 20
-#	$credits.rect_size.x = viewport.x
-#	$"continue-container".rect_position.x = viewport.x/2 - 60
-#	$"continue-container".rect_position.y = viewport.y/2 - 8
+	$"training-fire".rect_size.x = viewport.x
+	$"training-fire".rect_size.y = viewport.y/2
+
+	$"training-turn".rect_size.x = viewport.x/2
+	$"training-turn".rect_size.y = viewport.y/2
+	$"training-turn".rect_position.y = viewport.y/2
+
+	$"training-thrust".rect_size.x = viewport.x/2
+	$"training-thrust".rect_size.y = viewport.y/2
+	$"training-thrust".rect_position.x = viewport.x/2
+	$"training-thrust".rect_position.y = viewport.y/2
+
+	$"training-fire-rect".rect_size.x = viewport.x
+	$"training-fire-rect".rect_size.y = viewport.y/2
+	$"training-fire-rect".rect_pivot_offset.x = viewport.x/2
+	$"training-fire-rect".rect_pivot_offset.y = viewport.y/4
+
+	$"training-turn-rect".rect_size.x = viewport.x/2
+	$"training-turn-rect".rect_size.y = viewport.y/2
+	$"training-turn-rect".rect_position.y = viewport.y/2
+	$"training-turn-rect".rect_pivot_offset.x = viewport.x/4
+	$"training-turn-rect".rect_pivot_offset.y = viewport.y/4
+
+	$"training-thrust-rect".rect_size.x = viewport.x/2
+	$"training-thrust-rect".rect_size.y = viewport.y/2
+	$"training-thrust-rect".rect_position.x = viewport.x/2
+	$"training-thrust-rect".rect_position.y = viewport.y/2
+	$"training-thrust-rect".rect_pivot_offset.x = viewport.x/4
+	$"training-thrust-rect".rect_pivot_offset.y = viewport.y/4
+
+	$credits.rect_position.y = viewport.y/2 + 16
+	$credits.rect_size.x = viewport.x
+	$"continue-container".rect_position.x = viewport.x/2 - 60
+	$"continue-container".rect_position.y = viewport.y/2 - 8
 
 func alert(s):
 	alertCount = 100
