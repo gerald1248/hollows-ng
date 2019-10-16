@@ -3,8 +3,10 @@ extends CanvasLayer
 var alertCount = 0
 
 func _ready():
-	$vbox.rect_position = global.safe_area_position
+	$vbox.rect_position = Vector2()#global.safe_area_position
 	$vbox.rect_size = global.viewport_size
+	get_node("vbox/topbar/padding-left").rect_min_size = Vector2(global.hud_padding, 0)
+	get_node("vbox/topbar/padding-right").rect_min_size = Vector2(global.hud_padding, 0)
 
 	layout(global.viewport_size)
 	update_score(global.score)

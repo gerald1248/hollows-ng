@@ -321,11 +321,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="topbar" type="HBoxContainer" parent="hud/vbox"]
-margin_right = 40.0
+margin_right = 48.0
 margin_bottom = 8.0
 size_flags_horizontal = 3
 
+[node name="padding-left" type="VBoxContainer" parent="hud/vbox/topbar"]
+margin_bottom = 8.0
+
 [node name="left" type="VBoxContainer" parent="hud/vbox/topbar"]
+margin_left = 4.0
+margin_right = 4.0
 margin_bottom = 8.0
 
 [node name="score" type="Label" parent="hud/vbox/topbar/left"]
@@ -336,15 +341,15 @@ align = 1
 valign = 1
 
 [node name="middle" type="VBoxContainer" parent="hud/vbox/topbar"]
-margin_left = 4.0
-margin_right = 4.0
+margin_left = 8.0
+margin_right = 8.0
 margin_bottom = 8.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="right4" type="VBoxContainer" parent="hud/vbox/topbar"]
-margin_left = 8.0
-margin_right = 12.0
+margin_left = 12.0
+margin_right = 16.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 4, 8 )
 
@@ -355,8 +360,8 @@ centered = false
 vframes = 2
 
 [node name="right3" type="VBoxContainer" parent="hud/vbox/topbar"]
-margin_left = 16.0
-margin_right = 20.0
+margin_left = 20.0
+margin_right = 24.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 4, 0 )
 
@@ -367,8 +372,8 @@ centered = false
 vframes = 2
 
 [node name="right2" type="VBoxContainer" parent="hud/vbox/topbar"]
-margin_left = 24.0
-margin_right = 28.0
+margin_left = 28.0
+margin_right = 32.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 4, 8 )
 
@@ -379,8 +384,8 @@ centered = false
 vframes = 2
 
 [node name="right1" type="VBoxContainer" parent="hud/vbox/topbar"]
-margin_left = 32.0
-margin_right = 40.0
+margin_left = 36.0
+margin_right = 44.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 8, 8 )
 
@@ -390,16 +395,21 @@ texture = ExtResource( 13 )
 centered = false
 vframes = 2
 
+[node name="padding-right" type="VBoxContainer" parent="hud/vbox/topbar"]
+margin_left = 48.0
+margin_right = 48.0
+margin_bottom = 8.0
+
 [node name="alertbar" type="HBoxContainer" parent="hud/vbox"]
 margin_top = 12.0
-margin_right = 40.0
+margin_right = 48.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="alert" type="Label" parent="hud/vbox/alertbar"]
-margin_left = 20.0
-margin_right = 20.0
+margin_left = 24.0
+margin_right = 24.0
 margin_bottom = 8.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.666667, 0.666667, 0.666667, 1 )

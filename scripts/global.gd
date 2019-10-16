@@ -18,6 +18,7 @@ var viewport_size
 var is_ios
 var is_ipad
 var x_adjust
+var hud_padding
 
 func _ready():
 	load_config()
@@ -26,6 +27,7 @@ func _ready():
 	safe_area_position = Vector2(safe_area.position.x/4, safe_area.position.y/4)
 	safe_area_size = Vector2(safe_area.size.x/4, safe_area.size.y/4)
 	viewport_size = Vector2(OS.window_size.x/4, OS.window_size.y/4)
+	hud_padding = safe_area_position.x
 
 	# iPad requires an exception for custom drawing
 	is_ios = OS.get_name() == "iOS"
@@ -39,9 +41,9 @@ func _ready():
 		viewport_size = Vector2(320, 240)
 	# iPhone X, 11, ...
 	elif is_ios && viewport_size.x > 340:
-		# TODO: distinguish between iPhones with cutout and Android widescreen phones?
 		x_adjust = 25.0
-		viewport_size = Vector2(320.0 + x_adjust, 180)
+		#viewport_size = adjust_viewport_size(viewport_size)#Vector2(320.0 + x_adjust, 180)
+		viewport_size = Vector2(390.0, 180.0)
 	# iPhone 8 and older
 	elif is_ios:
 		viewport_size = Vector2(320.0, 180.0)
