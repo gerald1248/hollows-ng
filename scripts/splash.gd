@@ -5,6 +5,7 @@ var rng = RandomNumberGenerator.new()
 var fx_button
 var music_button
 var viewportSize
+var title_box
 var player_box
 var player_box_size
 var player
@@ -17,11 +18,13 @@ func _ready():
 	rng.randomize()
 	var rand = rng.randf_range(0.0, 1.0)
 	
+	$vbox.rect_min_size.x = global.viewport_size.x
+	title_box = get_node("vbox/hbox_title")
 	player_box = get_node("vbox/hbox_player")
 	player_box_size = player_box.rect_size
 	player = get_node("vbox/hbox_player/player")
 	weight = get_node("vbox/hbox_player/weight")
-	player.position = Vector2(player_box_size.x / 2, player_box_size.y / 2)
+	player.position = Vector2($vbox.rect_min_size.x / 2 + global.x_adjust, player_box_size.y / 2)
 	player.rotation_degrees = 360 * rand
 	weight.position = player.position + Vector2(25 * cos(2 * PI * -rand), 25 * sin(2 * PI * -rand))
 	weight.rotation_degrees = 360 * rand

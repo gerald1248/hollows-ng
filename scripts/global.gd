@@ -15,7 +15,9 @@ var safe_area
 var safe_area_position
 var safe_area_size
 var viewport_size
+var is_ios
 var is_ipad
+var x_adjust
 
 func _ready():
 	load_config()
@@ -26,14 +28,26 @@ func _ready():
 	viewport_size = Vector2(OS.window_size.x/4, OS.window_size.y/4)
 
 	# iPad requires an exception for custom drawing
-	# TODO: check if later versions report OS name as iPad OS?
-	is_ipad = OS.get_name() == "iOS" && viewport_size.x/viewport_size.y < 1.34
+	is_ios = OS.get_name() == "iOS"
+	is_ipad = is_ios && viewport_size.x/viewport_size.y < 1.34
 
-	# adjust for devices with base width * 1.5 and up
-	# always apply on iOS
-	if viewport_size.x > 480 || OS.get_name() == "iOS":
-		safe_area_size = Vector2(320, 180)
-		viewport_size = Vector2(320 + safe_area_position.x, 240 if is_ipad else 180)
+	# x-adjustment for widescreen devices
+	x_adjust = 0.0
+
+	# special case iPad
+	if is_ipad:
+		viewport_size = Vector2(320, 240)
+	# iPhone X, 11, ...
+	elif is_ios && viewport_size.x > 340:
+		# TODO: distinguish between iPhones with cutout and Android widescreen phones?
+		x_adjust = 25.0
+		viewport_size = Vector2(320.0 + x_adjust, 180)
+	# iPhone 8 and older
+	elif is_ios:
+		viewport_size = Vector2(320.0, 180.0)
+	# widescreen Android
+	elif viewport_size.x > 330:
+		viewport_size = adjust_viewport_size(viewport_size)
 
 func load_config():
 	var file = File.new()
@@ -43,6 +57,11 @@ func load_config():
 	fx = file.get_var()
 	music = file.get_var()
 	file.close()
+
+func adjust_viewport_size(size):
+	var long_side = max(size.x, size.y)
+	var short_side = min(size.x, size.y)
+	return Vector2(180.0 * round(long_side/short_side), 180.0)
 
 func save_config():
 	var file = File.new()

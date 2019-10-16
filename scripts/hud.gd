@@ -3,6 +3,9 @@ extends CanvasLayer
 var alertCount = 0
 
 func _ready():
+	$vbox.rect_position = global.safe_area_position
+	$vbox.rect_size = global.viewport_size
+
 	layout(global.viewport_size)
 	update_score(global.score)
 
@@ -23,10 +26,7 @@ func _ready():
 		get_node("training-fire-rect").show()
 		get_node("training-turn-rect").show()
 		get_node("training-thrust-rect").show()
-		get_node("training-animation").play("training")
-	
-	$vbox.rect_position = global.safe_area_position
-	$vbox.rect_size = global.safe_area_size
+		get_node("training-animation").play("training")	
 
 func layout(viewport):
 	$"training-fire".rect_size.x = viewport.x
@@ -78,4 +78,5 @@ func _process(delta):
 		alertCount = 0
 
 func update_score(i):
-	get_node("vbox/topbar/left/score").text = String(i)
+	#get_node("vbox/topbar/left/score").text = String(i)
+	get_node("vbox/topbar/left/score").text = String(global.viewport_size.x) + "x" + String(global.viewport_size.y) + " (" + OS.get_model_name() + ")"
