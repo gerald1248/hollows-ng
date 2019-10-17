@@ -3,6 +3,7 @@ extends Node
 const CONFIG_PATH = "user://hollows.data"
 const LIVES_MAX = 5
 const TILE_LENGTH = 16
+const DEBUG_SCREEN_RESOLUTION = false
 
 var lives = LIVES_MAX
 var level_index = 0 # 0 for training mission
@@ -17,7 +18,7 @@ var safe_area_size
 var viewport_size
 var is_ios
 var is_ipad
-var x_adjust
+var is_android
 var hud_padding
 
 func _ready():
@@ -33,16 +34,13 @@ func _ready():
 	is_ios = OS.get_name() == "iOS"
 	is_ipad = is_ios && viewport_size.x/viewport_size.y < 1.34
 
-	# x-adjustment for widescreen devices
-	x_adjust = 0.0
+	is_android = OS.get_name() == "Android"
 
 	# special case iPad
 	if is_ipad:
 		viewport_size = Vector2(320, 240)
 	# iPhone X, 11, ...
 	elif is_ios && viewport_size.x > 340:
-		x_adjust = 25.0
-		#viewport_size = adjust_viewport_size(viewport_size)#Vector2(320.0 + x_adjust, 180)
 		viewport_size = Vector2(390.0, 180.0)
 	# iPhone 8 and older
 	elif is_ios:
@@ -50,6 +48,9 @@ func _ready():
 	# widescreen Android
 	elif viewport_size.x > 330:
 		viewport_size = adjust_viewport_size(viewport_size)
+
+func flip_vector2(v2):
+	return Vector2(v2.y, v2.x)
 
 func load_config():
 	var file = File.new()

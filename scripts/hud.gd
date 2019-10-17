@@ -3,7 +3,7 @@ extends CanvasLayer
 var alertCount = 0
 
 func _ready():
-	$vbox.rect_position = Vector2()#global.safe_area_position
+	$vbox.rect_position = Vector2()
 	$vbox.rect_size = global.viewport_size
 	get_node("vbox/topbar/padding-left").rect_min_size = Vector2(global.hud_padding, 0)
 	get_node("vbox/topbar/padding-right").rect_min_size = Vector2(global.hud_padding, 0)
@@ -80,5 +80,5 @@ func _process(delta):
 		alertCount = 0
 
 func update_score(i):
-	#get_node("vbox/topbar/left/score").text = String(i)
-	get_node("vbox/topbar/left/score").text = String(global.viewport_size.x) + "x" + String(global.viewport_size.y) + " (" + OS.get_model_name() + ")"
+	var value = String(i) if !global.DEBUG_SCREEN_RESOLUTION else String(global.viewport_size.x) + "x" + String(global.viewport_size.y) + " (" + OS.get_model_name() + ")"
+	get_node("vbox/topbar/left/score").text = value

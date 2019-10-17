@@ -24,7 +24,7 @@ func _ready():
 	player_box_size = player_box.rect_size
 	player = get_node("vbox/hbox_player/player")
 	weight = get_node("vbox/hbox_player/weight")
-	player.position = Vector2($vbox.rect_min_size.x / 2 + global.x_adjust, player_box_size.y / 2)
+	player.position = Vector2($vbox.rect_min_size.x / 2, player_box_size.y / 2)
 	player.rotation_degrees = 360 * rand
 	weight.position = player.position + Vector2(25 * cos(2 * PI * -rand), 25 * sin(2 * PI * -rand))
 	weight.rotation_degrees = 360 * rand
