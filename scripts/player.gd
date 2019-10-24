@@ -48,6 +48,8 @@ func _ready():
 			terrain = load("res://scenes/level01-1.tscn").instance()	
 		2:
 			terrain = load("res://scenes/level02.tscn").instance()
+			get_parent().get_node("Light2D").set("texture_scale", 0.15)
+			get_parent().get_node("Light2D").set("energy", 4.0)
 		3:
 			terrain = load("res://scenes/level03.tscn").instance()
 		4:

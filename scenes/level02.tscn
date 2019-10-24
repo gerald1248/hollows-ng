@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://tilesets/main.tres" type="TileSet" id=1]
+[ext_resource path="res://tilesets/main-night.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/level02.gd" type="Script" id=2]
 
 [node name="terrain" type="TileMap"]

@@ -6,7 +6,7 @@ const TILE_LENGTH = 16
 const DEBUG_SCREEN_RESOLUTION = false
 
 var lives = LIVES_MAX
-var level_index = 0 # 0 for training mission
+var level_index = 2 # 0 for training mission
 var level_count = 7
 var fx = false
 var music = false
@@ -98,3 +98,8 @@ func add_to_score(i):
 	get_node("/root/main/hud").update_score(score)
 	if score > highscore:
 		set_highscore(score)
+
+func is_dark_level():
+	match global.level_index:
+		2: return true
+		_: return false

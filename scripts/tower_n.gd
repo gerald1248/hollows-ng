@@ -3,6 +3,10 @@ extends Area2D
 const DISTANCE_CUTOFF = 200
 const ENEMY_LASER = preload("res://scenes/enemy_laser.tscn")
 
+func _ready():
+	if global.is_dark_level():
+		$Sprite.modulate = Color("#111")
+
 func _on_tower_n_area_entered(area):
 	pass # Replace with function body.
 

@@ -1,5 +1,9 @@
 extends Area2D
 
+func _ready():
+	if global.is_dark_level():
+		$Sprite.modulate = Color("#111")
+		
 func _on_brick_area_entered(area):
 	pass # laser registers collision more reliably
 
