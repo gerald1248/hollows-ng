@@ -3,7 +3,7 @@ extends Node
 const CONFIG_PATH = "user://hollows.data"
 const LIVES_MAX = 5
 const TILE_LENGTH = 16
-const DEBUG_SCREEN_RESOLUTION = true
+const DEBUG_SCREEN_RESOLUTION = false
 
 var lives = LIVES_MAX
 var level_index = 0 # 0 for training mission
