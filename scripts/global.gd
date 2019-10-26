@@ -3,7 +3,7 @@ extends Node
 const CONFIG_PATH = "user://hollows.data"
 const LIVES_MAX = 5
 const TILE_LENGTH = 16
-const DEBUG_SCREEN_RESOLUTION = false
+const DEBUG_SCREEN_RESOLUTION = true
 
 var lives = LIVES_MAX
 var level_index = 0 # 0 for training mission
@@ -18,6 +18,7 @@ var safe_area_size
 var viewport_size
 var is_ios
 var is_ipad
+var is_iphone_x
 var is_android
 var hud_padding
 
@@ -33,6 +34,7 @@ func _ready():
 	# iPad requires an exception for custom drawing
 	is_ios = OS.get_name() == "iOS"
 	is_ipad = is_ios && viewport_size.x/viewport_size.y < 1.34
+	is_iphone_x = is_ios && viewport_size.x/viewport_size.y > 1.8
 
 	is_android = OS.get_name() == "Android"
 
@@ -40,7 +42,7 @@ func _ready():
 	if is_ipad:
 		viewport_size = Vector2(320, 240)
 	# iPhone X, 11, ...
-	elif is_ios && viewport_size.x > 340:
+	elif is_iphone_x:
 		viewport_size = Vector2(390.0, 180.0)
 	# iPhone 8 and older
 	elif is_ios:
