@@ -4,6 +4,23 @@ const CONFIG_PATH = "user://hollows.data"
 const LIVES_MAX = 5
 const TILE_LENGTH = 16
 const DEBUG_SCREEN_RESOLUTION = false
+const CREDITS_FULL = """
+Richard Strauss, Blue Danube, European Archive, CC0 1.0
+
+Sound effects by @Shades, CC0 1.0
+
+Explosions by Akimasa Shimobayashi, CC BY 3.0
+(changed size and mode)
+
+Godot Engine by Juan Linietsky, Ariel Manzur
+and Godot Engine Contributors, MIT
+
+Links to sources and licenses:
+github.com/gerald1248/hollows-ng/blob/master/COPYING
+
+Hollows is free to copy and modify at:
+github.com/gerald1248/hollows-ng
+"""
 
 var lives = LIVES_MAX
 var level_index = 0 # 0 for training mission
@@ -100,3 +117,4 @@ func add_to_score(i):
 	get_node("/root/main/hud").update_score(score)
 	if score > highscore:
 		set_highscore(score)
+

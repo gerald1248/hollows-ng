@@ -65,3 +65,10 @@ func _notification(what):
 	match (what):
 		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 			get_tree().quit()
+
+
+func _on_credits_button_button_down():
+	$credits_dialog.get_close_button().hide()
+	$credits_dialog.set_text(global.CREDITS_FULL)
+	$credits_dialog.popup_centered_ratio(0.8)
+	$credits_dialog.show()
