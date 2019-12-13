@@ -10,7 +10,7 @@ const TOUCH_THRUST_DENOMINATOR = 3
 const TURN_SPEED_DRAG = 4
 const ROTATION_STEP = 0.5
 const MAP_LIMIT = 512
-const LIVES_MAX = 4
+const LIVES_MAX = global.LIVES_MAX
 
 var array_touch_state = []
 var array_touch_area = []
@@ -40,6 +40,8 @@ const RELOAD_TIME = 1.0
 func _ready():
 	screensize = get_viewport().get_visible_rect().size
 	target_acquired = false
+	var idx = 0
+		
 	
 	match global.level_index:
 		0:
@@ -98,26 +100,32 @@ func thrust_on():
 func thrust_off():
 	thrust = Vector2()
 
-func turn_left():
-	rotation_dir -= ROTATION_STEP
+func turn_left(step = null):
+	if step == null:
+		rotation_dir -= ROTATION_STEP
+	else:
+		rotation_dir -= step
 
-func turn_right():
-	rotation_dir += ROTATION_STEP
+func turn_right(step = null):
+	if step == null:
+		rotation_dir += ROTATION_STEP
+	else:
+		rotation_dir += step
 
 func get_input():
 	var player_shown = get_node("Sprite").visible
-	if Input.is_action_pressed("ui_up") && player_shown:
+	if Input.is_action_pressed("player_thrust") && player_shown:
 		thrust_on()
-	elif !Input.is_action_pressed("ui_up"):
+	elif !Input.is_action_pressed("player_thrust"):
 		thrust_off()
 	rotation_dir = 0
-	if Input.is_action_pressed("ui_right") && player_shown:
+	if Input.is_action_pressed("player_right") && player_shown:
 		turn_right()
-	if Input.is_action_pressed("ui_left") && player_shown:
+	if Input.is_action_pressed("player_left") && player_shown:
 		turn_left()
-	if Input.is_key_pressed(KEY_SPACE) && player_shown:
+	if Input.is_action_pressed("player_fire") && player_shown:
 		fire()
-	if Input.is_key_pressed(KEY_P):
+	if Input.is_action_pressed("player_pause"):
 		get_parent().pause()
 	for i in range(TOUCH_MAX):
 		match array_touch_state[i]:
@@ -174,6 +182,14 @@ func _unhandled_input(event):
 					array_touch_state[index] = TOUCH_THRUST_OFF
 				_:
 					array_touch_state[index] = TOUCH_IDLE
+	
+	elif (event.get_class() == "InputEventMouseButton" && player_shown):        
+		# Use the mouse wheel to turn
+		if (event.pressed):
+			if event.button_index == BUTTON_WHEEL_UP:
+				turn_left(ROTATION_STEP * 3)
+			elif event.button_index == BUTTON_WHEEL_DOWN:
+				turn_right(ROTATION_STEP * 3)
 
 func _process(delta):
 	get_input()
@@ -272,6 +288,10 @@ func explode():
 	play_sound_once("sample-explosion")
 
 	global.lives = global.lives - 1
+	
+	get_node("/root/main/hud/vbox/topbar").remove_child(get_node("/root/main/hud/vbox/topbar/right" + str(global.lives)))
+
+
 	if global.lives <= 0:
 		global.save_config()
 		global.level_index = 0
@@ -279,6 +299,7 @@ func explode():
 		global.lives = global.LIVES_MAX
 		global.score = 0
 		game_over = true
+	
 
 	var animation = get_node("explosion")
 	var sprite = animation.get_node("Sprite")

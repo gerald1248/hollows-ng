@@ -11,15 +11,16 @@ func _ready():
 	layout(global.viewport_size)
 	update_score(global.score)
 
-	if global.lives < 5:
-		get_node("vbox/topbar/right4/player04").hide()
-	if global.lives < 4:
-		get_node("vbox/topbar/right3/player03").hide()
-	if global.lives < 3:
-		get_node("vbox/topbar/right2/player02").hide()
-	if global.lives < 2:
-		get_node("vbox/topbar/right1/player01").hide()
-
+	var idx = 0
+	for i in global.lives:
+		var n = get_node("/root/main/hud/vbox/topbar/righttemplate").duplicate()
+		n.name = "right" + str(idx)
+		n.get_node("playerbmp").offset.x = 56 + idx * 8
+		get_node("/root/main/hud/vbox/topbar/").add_child(n)
+		get_node("/root/main/hud/vbox/topbar/").move_child(n, 3)
+		
+		idx += 1
+	get_node("/root/main/hud/vbox/topbar/righttemplate").hide()
 	# training
 	if global.level_index == 0:
 		get_node("training-fire").show()

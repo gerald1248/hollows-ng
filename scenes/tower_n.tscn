@@ -18,7 +18,6 @@ polygon = PoolVector2Array( -8, -8, 0, 0, 8, -8 )
 [node name="schedule" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
-
 [connection signal="area_entered" from="." to="." method="_on_tower_n_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_tower_n_body_entered"]
 [connection signal="timeout" from="schedule" to="." method="_on_schedule_timeout"]
