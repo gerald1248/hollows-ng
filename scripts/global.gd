@@ -1,7 +1,7 @@
 extends Node
 
 const CONFIG_PATH = "user://hollows.data"
-const LIVES_MAX = 15
+const LIVES_MAX = 4
 const TILE_LENGTH = 16
 const DEBUG_SCREEN_RESOLUTION = false
 const CREDITS_FULL = """
