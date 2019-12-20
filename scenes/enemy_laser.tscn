@@ -28,6 +28,5 @@ texture = ExtResource( 4 )
 vframes = 4
 hframes = 8
 frame = 7
-
 [connection signal="area_entered" from="." to="." method="_on_laser_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_laser_body_entered"]

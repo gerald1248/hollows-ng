@@ -9,4 +9,3 @@ cell_size = Vector2( 16, 16 )
 collision_use_kinematic = true
 format = 1
 script = ExtResource( 2 )
-

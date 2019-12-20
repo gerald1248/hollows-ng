@@ -185,7 +185,6 @@ size_flags_vertical = 3
 theme = SubResource( 9 )
 popup_exclusive = true
 window_title = "Credits"
-
 [connection signal="pressed" from="vbox/hbox_start/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="vbox/hbox_controls/credits_button" to="." method="_on_credits_button_button_down"]
 [connection signal="pressed" from="vbox/hbox_controls/fx_button" to="." method="_on_fx_button_pressed"]
