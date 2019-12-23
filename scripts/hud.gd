@@ -15,10 +15,9 @@ func _ready():
 	for i in global.lives:
 		var n = get_node("/root/main/hud/vbox/topbar/righttemplate").duplicate()
 		n.name = "right" + str(idx)
-		n.get_node("playerbmp").offset.x = 56 + idx * 8
+		n.get_node("playerbmp").offset.x = idx * 8
 		get_node("/root/main/hud/vbox/topbar/").add_child(n)
 		get_node("/root/main/hud/vbox/topbar/").move_child(n, 3)
-		
 		idx += 1
 	get_node("/root/main/hud/vbox/topbar/righttemplate").hide()
 	# training

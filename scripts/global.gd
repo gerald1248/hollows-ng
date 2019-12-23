@@ -1,7 +1,7 @@
 extends Node
 
 const CONFIG_PATH = "user://hollows.data"
-const LIVES_MAX = 4
+const LIVES_MAX = 8
 const TILE_LENGTH = 16
 const DEBUG_SCREEN_RESOLUTION = false
 const CREDITS_FULL = """
@@ -44,8 +44,9 @@ func _ready():
 	set_music(music)
 	safe_area = OS.get_window_safe_area()
 	safe_area_position = Vector2(safe_area.position.x/4, safe_area.position.y/4)
-	safe_area_size = Vector2(safe_area.size.x/4, safe_area.size.y/4)
-	viewport_size = Vector2(OS.window_size.x/4, OS.window_size.y/4)
+	safe_area_size = Vector2(safe_area.size.x/4, safe_area.size.y/4)	
+	viewport_size = get_viewport().get_visible_rect().size
+	
 	hud_padding = safe_area_position.x
 
 	# iPad requires an exception for custom drawing
