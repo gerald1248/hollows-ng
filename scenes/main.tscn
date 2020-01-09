@@ -296,6 +296,12 @@ vframes = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="weight"]
 shape = SubResource( 3 )
 
+[node name="line" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 1.25
+default_color = Color( 1, 1, 1, 1 )
+
 [node name="escape" type="AnimationPlayer" parent="."]
 anims/escape = SubResource( 4 )
 

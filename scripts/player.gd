@@ -20,10 +20,12 @@ var rotation_dir = 0
 var screensize
 var target_acquired
 var joint
+var line
 var terrain
 var exploding = false
 var game_over = false
 var escape_shown = false
+
 
 var record = {}
 
@@ -75,6 +77,8 @@ func _ready():
 		var tn = TOWER_N.instance()
 		tn.position = tileToPoint(tower_n)
 		get_parent().call_deferred("add_child", tn)
+
+	line = get_node("/root/main/line")
 
 	get_parent().get_node("hud").alert(terrain.greeting)
 
@@ -194,16 +198,14 @@ func _process(delta):
 	engine.position = position
 	engine.rotation = rotation
 	get_parent().get_node("Light2D").position = position
+
+	if target_acquired:
+		line.set_point_position(0, position)
+		line.set_point_position(1, weight_node.position)
+
 	if reloading > 0.0:
 		reloading -= 0.1
 	update()
-
-func _draw():
-	if target_acquired:
-		var node_b = get_node("/root/main/weight")
-		var pos_a = transform.xform_inv(global_position)
-		var pos_b = transform.xform_inv(node_b.global_position)
-		draw_line(pos_a, pos_b, Color.white, 1.2, false)
 
 func _integrate_forces(state):
 	if exploding:
@@ -230,11 +232,9 @@ func _integrate_forces(state):
 					get_parent().get_node("hud").alert("Escape")
 					escape_shown = true
 
-
 func _physics_process(delta):
 	set_applied_force(thrust.rotated(rotation))
 	set_applied_torque(rotation_dir * spin_thrust)
-
 
 func fire():
 	if reloading > 0.0 || exploding:
@@ -250,6 +250,9 @@ func fire():
 func acquire_target():
 	if target_acquired || exploding:
 		return
+	line.set_point_position(0, position)
+	line.set_point_position(1, weight_node.position)
+	line.show()
 	global.add_to_score(500)
 	if global.fx:
 		get_parent().get_node("sample-coin").call_deferred("play")
@@ -282,6 +285,7 @@ func explode():
 	if target_acquired:
 		target_acquired = false
 		joint.queue_free()
+		line.hide()
 
 	play_sound_once("sample-explosion")
 
