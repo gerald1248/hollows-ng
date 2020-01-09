@@ -47,6 +47,9 @@ default_font = SubResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="vbox" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -55,6 +58,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="hbox_title" type="HBoxContainer" parent="vbox"]
 margin_top = 16.0
@@ -91,6 +97,11 @@ texture_scale = 0.13
 [node name="weight" type="Sprite" parent="vbox/hbox_player"]
 texture = ExtResource( 6 )
 vframes = 2
+
+[node name="line" type="Line2D" parent="vbox/hbox_player"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 1.25
+default_color = Color( 1, 1, 1, 1 )
 
 [node name="hbox_start" type="HBoxContainer" parent="vbox"]
 margin_top = 92.0
@@ -185,6 +196,7 @@ size_flags_vertical = 3
 theme = SubResource( 9 )
 popup_exclusive = true
 window_title = "Credits"
+[connection signal="minimum_size_changed" from="." to="." method="_on_splash_minimum_size_changed"]
 [connection signal="pressed" from="vbox/hbox_start/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="vbox/hbox_controls/credits_button" to="." method="_on_credits_button_button_down"]
 [connection signal="pressed" from="vbox/hbox_controls/fx_button" to="." method="_on_fx_button_pressed"]

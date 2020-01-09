@@ -40,8 +40,6 @@ const RELOAD_TIME = 1.0
 func _ready():
 	screensize = get_viewport().get_visible_rect().size
 	target_acquired = false
-	var idx = 0
-		
 	
 	match global.level_index:
 		0:
@@ -120,9 +118,9 @@ func get_input():
 		thrust_off()
 	rotation_dir = 0
 	if Input.is_action_pressed("player_right") && player_shown:
-		turn_right()
+		turn_right(ROTATION_STEP * 0.75)
 	if Input.is_action_pressed("player_left") && player_shown:
-		turn_left()
+		turn_left(ROTATION_STEP * 0.75)
 	if Input.is_action_pressed("player_fire") && player_shown:
 		fire()
 	if Input.is_action_pressed("player_pause"):
@@ -254,7 +252,7 @@ func acquire_target():
 		return
 	global.add_to_score(500)
 	if global.fx:
-		get_parent().get_node("sample-coin").play()
+		get_parent().get_node("sample-coin").call_deferred("play")
 	joint = JOINT.instance()
 	add_child(joint)
 	target_acquired = true
@@ -290,7 +288,6 @@ func explode():
 	global.lives = global.lives - 1
 	
 	get_node("/root/main/hud/vbox/topbar").remove_child(get_node("/root/main/hud/vbox/topbar/right" + str(global.lives)))
-
 
 	if global.lives <= 0:
 		global.save_config()

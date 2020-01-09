@@ -3,7 +3,7 @@ extends Node2D
 func _ready():
 	get_tree().set_auto_accept_quit(false)
 	get_tree().set_quit_on_go_back(false)
-
+	get_tree().get_root().connect("size_changed", self, "on_window_resized")
 	if global.fx:
 		get_node("/root/main/sample-fly").play()
 
@@ -19,3 +19,6 @@ func _notification(what):
 func pause():
 	get_node("hud/continue-container").show()
 	get_tree().paused = true
+
+func on_window_resized():
+	$hud.layout(get_viewport().get_visible_rect().size)

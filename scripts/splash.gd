@@ -10,35 +10,40 @@ var player_box
 var player_box_size
 var player
 var weight
+var line
+var rand
+var is_ready = false
 
-func _ready():	
+func _ready():
 	fx_button = get_node("vbox").get_node("hbox_controls").get_node("fx_button")
 	music_button = get_node("vbox").get_node("hbox_controls").get_node("music_button")
 	update_button_labels()
 	rng.randomize()
-	var rand = rng.randf_range(0.0, 1.0)
+	rand = rng.randf_range(0.0, 1.0)
 	
-	$vbox.rect_min_size.x = global.viewport_size.x
+	$vbox.rect_min_size.x = get_viewport().get_visible_rect().size.x
+	
 	title_box = get_node("vbox/hbox_title")
 	player_box = get_node("vbox/hbox_player")
 	player_box_size = player_box.rect_size
 	player = get_node("vbox/hbox_player/player")
 	weight = get_node("vbox/hbox_player/weight")
-	player.position = Vector2($vbox.rect_min_size.x / 2, player_box_size.y / 2)
-	player.rotation_degrees = 360 * rand
-	weight.position = player.position + Vector2(25 * cos(2 * PI * -rand), 25 * sin(2 * PI * -rand))
-	weight.rotation_degrees = 360 * rand
+	line = get_node("vbox/hbox_player/line")
+	update_player_position($vbox.rect_min_size.x)
 	if global.highscore > 0:
 		var footer = get_node("/root/splash/vbox/hbox_footer/footer")
 		footer.set_text(String("High score %d" % global.highscore))
 		footer.rect_size.x = global.viewport_size.x
+	is_ready = true
 
-func _draw():
-	# iPad _only_ requires a y-adjustment to the line drawn
-	# 30 seems to be a workable offset
-	var y_adjust = Vector2(0.0, 30.0) if global.is_ipad else Vector2()
-	draw_line(player.get_global_position() + y_adjust, weight.get_global_position() + y_adjust, Color.white, 1.2, false)
-	
+func update_player_position(width):
+	player.position = Vector2(width / 2, player_box_size.y / 2)
+	player.rotation_degrees = 360 * rand
+	weight.position = player.position + Vector2(25 * cos(2 * PI * -rand), 25 * sin(2 * PI * -rand))
+	weight.rotation_degrees = 360 * rand
+	$vbox/hbox_player/line.set_point_position(0, player.position)
+	$vbox/hbox_player/line.set_point_position(1, weight.position)
+
 func update_button_labels():
 	fx_button.text = "FX ON" if global.fx else "FX OFF"
 	music_button.text = "Music ON" if global.music else "Music OFF"
@@ -65,7 +70,9 @@ func _notification(what):
 	match (what):
 		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 			get_tree().quit()
-
+		NOTIFICATION_RESIZED: # fires before _ready()
+			if is_ready:
+				update_player_position(get_viewport().get_visible_rect().size.x)
 
 func _on_credits_button_button_down():
 	$credits_dialog.get_close_button().hide()

@@ -246,7 +246,6 @@ font_data = ExtResource( 12 )
 script = ExtResource( 1 )
 
 [node name="player" type="RigidBody2D" parent="."]
-editor/display_folded = true
 contacts_reported = 1
 contact_monitor = true
 can_sleep = false
@@ -284,10 +283,8 @@ script = ExtResource( 6 )
 texture = ExtResource( 7 )
 vframes = 4
 hframes = 8
-frame = 5
 
 [node name="weight" type="RigidBody2D" parent="."]
-editor/display_folded = true
 mass = 0.5
 can_sleep = false
 script = ExtResource( 8 )
@@ -303,7 +300,6 @@ shape = SubResource( 3 )
 anims/escape = SubResource( 4 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-editor/display_folded = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2( -256, -128 )
@@ -322,6 +318,9 @@ margin_bottom = 20.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="topbar" type="HBoxContainer" parent="hud/vbox"]
 margin_right = 40.0
@@ -333,7 +332,6 @@ size_flags_horizontal = 3
 margin_bottom = 8.0
 
 [node name="left" type="VBoxContainer" parent="hud/vbox/topbar"]
-editor/display_folded = true
 margin_left = 4.0
 margin_right = 4.0
 margin_bottom = 8.0

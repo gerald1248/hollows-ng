@@ -1,7 +1,7 @@
 extends Node
 
 const CONFIG_PATH = "user://hollows.data"
-const LIVES_MAX = 8
+const LIVES_MAX = 4
 const TILE_LENGTH = 16
 const DEBUG_SCREEN_RESOLUTION = false
 const CREDITS_FULL = """
@@ -67,7 +67,7 @@ func _ready():
 		viewport_size = Vector2(320.0, 180.0)
 	# widescreen Android
 	elif viewport_size.x > 330:
-		viewport_size = adjust_viewport_size(viewport_size)
+		pass#viewport_size = adjust_viewport_size(viewport_size)
 func flip_vector2(v2):
 	return Vector2(v2.y, v2.x)
 
