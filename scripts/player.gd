@@ -46,6 +46,8 @@ func _ready():
 	match global.level_index:
 		0:
 			terrain = load("res://scenes/level01.tscn").instance()
+			terrain.player_rotation = PI * 2.0 + PI * (global.get_random() - 0.5)
+
 		1:
 			terrain = load("res://scenes/level01-1.tscn").instance()	
 		2:
@@ -151,7 +153,7 @@ func _unhandled_input(event):
 		var index = event.get_index()
 		var relativePosition = event.get_relative()
 		var position = event.position
-		if position.y < (screensize.y/2) || position.x > (screensize.x/2):
+		if position.y < (screensize.y * 0.66) || position.x > (screensize.x/2):
 			pass
 		else:
 			if (relativePosition.x < 0): # left
@@ -163,7 +165,7 @@ func _unhandled_input(event):
 	elif (event.get_class() == "InputEventScreenTouch" && player_shown):
 		var index = event.get_index()
 		var position = event.position
-		if position.y < (screensize.y/2):
+		if position.y < (screensize.y * 0.66):
 			array_touch_area[index] = TOUCH_AREA_FIRE
 		elif position.x > (screensize.x/2):
 			array_touch_area[index] = TOUCH_AREA_THRUST

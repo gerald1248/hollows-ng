@@ -40,6 +40,9 @@ var is_ipad
 var is_iphone_x
 var is_android
 var hud_padding
+const random_array = [ 0.0, 0.6, 0.2, 0.1, 0.3, 0.9, 1.0, 0.8, 0.4, 0.5, 0.7 ]
+var random_array_size = random_array.size()
+var random_array_index = 0
 
 func _ready():
 	load_config()
@@ -55,20 +58,6 @@ func _ready():
 	is_ipad = is_ios && viewport_size.x/viewport_size.y < 1.34
 	is_iphone_x = is_ios && viewport_size.x/viewport_size.y > 1.8
 	is_android = OS.get_name() == "Android"
-
-	# TODO: removed all custom sizing; reinstate if necessary
-	# special case iPad
-	#if is_ipad:
-	#	viewport_size = Vector2(320, 240)
-	# iPhone X, 11, ...
-	#elif is_iphone_x:
-	#	viewport_size = Vector2(390.0, 180.0)
-	# iPhone 8 and older
-	#elif is_ios:
-	#	viewport_size = Vector2(320.0, 180.0)
-	# widescreen Android
-	#elif viewport_size.x > 330:
-	#	viewport_size = adjust_viewport_size(viewport_size)
 
 func flip_vector2(v2):
 	return Vector2(v2.y, v2.x)
@@ -120,3 +109,6 @@ func add_to_score(i):
 	if score > highscore:
 		set_highscore(score)
 
+func get_random():
+	random_array_index = (random_array_index + 1) % (random_array_size - 1)
+	return random_array[ random_array_index ]
