@@ -24,4 +24,3 @@ func on_window_resized():
 	var size = get_viewport().get_visible_rect().size
 	$player.screensize = size
 	$hud.layout(size)
-	pause()

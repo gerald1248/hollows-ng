@@ -26,7 +26,6 @@ var exploding = false
 var game_over = false
 var escape_shown = false
 
-
 var record = {}
 
 var reloading = 0.0

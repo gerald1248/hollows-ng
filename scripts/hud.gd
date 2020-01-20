@@ -54,14 +54,14 @@ func layout(size):
 	$"training-turn-rect".rect_size.y = size.y * 0.33
 	$"training-turn-rect".rect_position.y = size.y * 0.66
 	$"training-turn-rect".rect_pivot_offset.x = size.x/4
-	$"training-turn-rect".rect_pivot_offset.y = size.y * 0.33
+	$"training-turn-rect".rect_pivot_offset.y = size.y * 0.165
 
 	$"training-thrust-rect".rect_size.x = size.x/2
 	$"training-thrust-rect".rect_size.y = size.y * 0.33
 	$"training-thrust-rect".rect_position.x = size.x/2
 	$"training-thrust-rect".rect_position.y = size.y * 0.66
 	$"training-thrust-rect".rect_pivot_offset.x = size.x/4
-	$"training-thrust-rect".rect_pivot_offset.y = size.y * 0.33
+	$"training-thrust-rect".rect_pivot_offset.y = size.y * 0.165
 
 	$credits.rect_position.y = size.y/2 + 16
 	$credits.rect_size.x = size.x
