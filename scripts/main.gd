@@ -21,4 +21,7 @@ func pause():
 	get_tree().paused = true
 
 func on_window_resized():
-	$hud.layout(get_viewport().get_visible_rect().size)
+	var size = get_viewport().get_visible_rect().size
+	$player.screensize = size
+	$hud.layout(size)
+	pause()

@@ -4,7 +4,6 @@ var rng = RandomNumberGenerator.new()
 
 var fx_button
 var music_button
-var viewportSize
 var title_box
 var player_box
 var player_box_size
@@ -12,6 +11,7 @@ var player
 var weight
 var line
 var rand
+var screensize
 var is_ready = false
 
 func _ready():
@@ -21,7 +21,7 @@ func _ready():
 	rng.randomize()
 	rand = rng.randf_range(0.0, 1.0)
 	
-	$vbox.rect_min_size.x = get_viewport().get_visible_rect().size.x
+	set_screensize()
 	
 	title_box = get_node("vbox/hbox_title")
 	player_box = get_node("vbox/hbox_player")
@@ -35,6 +35,11 @@ func _ready():
 		footer.set_text(String("High score %d" % global.highscore))
 		footer.rect_size.x = global.viewport_size.x
 	is_ready = true
+
+func set_screensize():
+	screensize = get_viewport().get_visible_rect().size
+	$vbox.rect_min_size.x = screensize.x
+	$starfield.offset = screensize/2
 
 func update_player_position(width):
 	player.position = Vector2(width / 2, player_box_size.y / 2)
@@ -72,10 +77,13 @@ func _notification(what):
 			get_tree().quit()
 		NOTIFICATION_RESIZED: # fires before _ready()
 			if is_ready:
-				update_player_position(get_viewport().get_visible_rect().size.x)
+				set_screensize()
+				update_player_position(screensize.x)
 
 func _on_credits_button_button_down():
+	var font_size = 3.0 if screensize.x > screensize.y else 4.0
 	$credits_dialog.get_close_button().hide()
 	$credits_dialog.set_text(global.CREDITS_FULL)
+	$credits_dialog.theme.default_font.set("size", font_size)
 	$credits_dialog.popup_centered_ratio(0.8)
 	$credits_dialog.show()

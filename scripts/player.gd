@@ -139,9 +139,9 @@ func get_input():
 			TOUCH_FIRE:
 				fire()
 			TOUCH_DRAG_LEFT:
-				turn_left()
+				turn_left(ROTATION_STEP * 0.75)
 			TOUCH_DRAG_RIGHT:
-				turn_right()
+				turn_right(ROTATION_STEP * 0.75)
 			TOUCH_IDLE:
 				pass
 

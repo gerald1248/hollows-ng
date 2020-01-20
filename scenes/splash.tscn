@@ -6,7 +6,7 @@
 [ext_resource path="res://sprites/ship.png" type="Texture" id=4]
 [ext_resource path="res://sprites/light.png" type="Texture" id=5]
 [ext_resource path="res://sprites/weight.png" type="Texture" id=6]
-[ext_resource path="res://sprites/starfield512x512.png" type="Texture" id=7]
+[ext_resource path="res://sprites/starfield1024x1024.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -37,7 +37,7 @@ size = 6
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=8]
-size = 4
+size = 3
 font_data = ExtResource( 2 )
 
 [sub_resource type="Theme" id=9]
@@ -177,18 +177,6 @@ custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 align = 1
 valign = 1
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-offset = Vector2( 160, 90 )
-transform = Transform2D( 1, 0, 0, 1, 160, 90 )
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2( -256, -128 )
-motion_scale = Vector2( 0.4, 0.4 )
-motion_mirroring = Vector2( 512, 396 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource( 7 )
-
 [node name="credits_dialog" type="AcceptDialog" parent="."]
 light_mask = 2
 size_flags_horizontal = 3
@@ -196,6 +184,11 @@ size_flags_vertical = 3
 theme = SubResource( 9 )
 popup_exclusive = true
 window_title = "Credits"
+
+[node name="starfield" type="Sprite" parent="."]
+show_behind_parent = true
+texture = ExtResource( 7 )
+offset = Vector2( 160, 90 )
 [connection signal="minimum_size_changed" from="." to="." method="_on_splash_minimum_size_changed"]
 [connection signal="pressed" from="vbox/hbox_start/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="vbox/hbox_controls/credits_button" to="." method="_on_credits_button_button_down"]

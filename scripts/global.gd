@@ -12,6 +12,8 @@ Sound effects by @Shades, CC0 1.0
 Explosions by Akimasa Shimobayashi, CC BY 3.0
 (changed size and mode)
 
+Mouse support by FranchuFranchu
+
 Godot Engine by Juan Linietsky, Ariel Manzur
 and Godot Engine Contributors, MIT
 
@@ -49,25 +51,25 @@ func _ready():
 	
 	hud_padding = safe_area_position.x
 
-	# iPad requires an exception for custom drawing
 	is_ios = OS.get_name() == "iOS"
 	is_ipad = is_ios && viewport_size.x/viewport_size.y < 1.34
 	is_iphone_x = is_ios && viewport_size.x/viewport_size.y > 1.8
-
 	is_android = OS.get_name() == "Android"
 
+	# TODO: removed all custom sizing; reinstate if necessary
 	# special case iPad
-	if is_ipad:
-		viewport_size = Vector2(320, 240)
+	#if is_ipad:
+	#	viewport_size = Vector2(320, 240)
 	# iPhone X, 11, ...
-	elif is_iphone_x:
-		viewport_size = Vector2(390.0, 180.0)
+	#elif is_iphone_x:
+	#	viewport_size = Vector2(390.0, 180.0)
 	# iPhone 8 and older
-	elif is_ios:
-		viewport_size = Vector2(320.0, 180.0)
+	#elif is_ios:
+	#	viewport_size = Vector2(320.0, 180.0)
 	# widescreen Android
-	elif viewport_size.x > 330:
-		pass#viewport_size = adjust_viewport_size(viewport_size)
+	#elif viewport_size.x > 330:
+	#	viewport_size = adjust_viewport_size(viewport_size)
+
 func flip_vector2(v2):
 	return Vector2(v2.y, v2.x)
 

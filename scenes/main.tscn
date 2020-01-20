@@ -9,7 +9,7 @@
 [ext_resource path="res://sprites/explosion-bw-minus100-32x32.png" type="Texture" id=7]
 [ext_resource path="res://scripts/weight.gd" type="Script" id=8]
 [ext_resource path="res://sprites/weight.png" type="Texture" id=9]
-[ext_resource path="res://sprites/starfield512x512.png" type="Texture" id=10]
+[ext_resource path="res://sprites/starfield1024x1024.png" type="Texture" id=10]
 [ext_resource path="res://scripts/hud.gd" type="Script" id=11]
 [ext_resource path="res://fonts/PressStart2P.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://sprites/ship-aaa.png" type="Texture" id=13]
@@ -308,9 +308,7 @@ anims/escape = SubResource( 4 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2( -256, -128 )
-motion_scale = Vector2( 0.4, 0.4 )
-motion_mirroring = Vector2( 512, 396 )
+motion_scale = Vector2( 0.25, 0.25 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 10 )
