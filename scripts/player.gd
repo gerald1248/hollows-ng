@@ -4,7 +4,7 @@ export (int) var engine_thrust
 export (int) var spin_thrust
 
 enum {TOUCH_IDLE, TOUCH_THRUST_ON, TOUCH_THRUST_OFF, TOUCH_FIRE, TOUCH_DRAG_LEFT, TOUCH_DRAG_RIGHT}
-enum {TOUCH_AREA_NONE, TOUCH_AREA_FIRE, TOUCH_AREA_DRAG, TOUCH_AREA_THRUST}
+enum {TOUCH_AREA_DRAG, TOUCH_AREA_FIRE, TOUCH_AREA_THRUST, TOUCH_AREA_NONE}
 const TOUCH_MAX = 3
 const TOUCH_THRUST_DENOMINATOR = 3
 const TURN_SPEED_DRAG = 4
@@ -26,6 +26,11 @@ var exploding = false
 var game_over = false
 var escape_shown = false
 
+var drag_area = TOUCH_AREA_NONE
+var drag_area_previous = TOUCH_AREA_NONE
+var drag_relative_x = 0.0
+var drag_index = 0
+
 var record = {}
 
 var reloading = 0.0
@@ -41,6 +46,7 @@ const RELOAD_TIME = 1.0
 func _ready():
 	screensize = get_viewport().get_visible_rect().size
 	target_acquired = false
+	global.set_engine_sound_off()
 	
 	match global.level_index:
 		0:
@@ -99,9 +105,11 @@ func init_touch_state():
 func thrust_on():
 	thrust = Vector2(engine_thrust, 0)
 	play_thrust_animation()
+	global.set_engine_sound_on()
 
 func thrust_off():
 	thrust = Vector2()
+	global.set_engine_sound_off()
 
 func turn_left(step = null):
 	if step == null:
@@ -149,40 +157,74 @@ func get_input():
 func _unhandled_input(event):
 	var player_shown = get_node("Sprite").visible
 	if (event.get_class() == "InputEventScreenDrag" && player_shown):
-		var index = event.get_index()
-		var relativePosition = event.get_relative()
-		var position = event.position
-		if position.y < (screensize.y * 0.66) || position.x > (screensize.x/2):
-			pass
-		else:
-			if (relativePosition.x < 0): # left
-				array_touch_state[index] = TOUCH_DRAG_LEFT
-			elif (relativePosition.x > 0): # right
-				array_touch_state[index] = TOUCH_DRAG_RIGHT
-			else: # no movement
-				array_touch_state[index] = TOUCH_IDLE
+		drag_index = event.get_index()
+		if drag_index > TOUCH_MAX:
+			return
+
+		drag_area = get_drag_area(event.position)
+		drag_area_previous = get_drag_area(event.position - event.get_relative())
+		drag_relative_x = event.get_relative().x
+		
+		if drag_area != drag_area_previous:
+			match drag_area_previous:
+				TOUCH_AREA_NONE: return
+				TOUCH_AREA_DRAG: 
+					get_parent().get_node("hud/turn-indicator").offset = Vector2(screensize.x/4, screensize.y * 0.85)
+					return
+				TOUCH_AREA_FIRE:
+					get_parent().get_node("hud/fire-indicator").offset = Vector2(screensize.x/2 + screensize.x/8, screensize.y * 0.85)
+					return
+				TOUCH_AREA_THRUST:
+					get_parent().get_node("hud/thrust-indicator").offset = Vector2(screensize.x - screensize.x/8, screensize.y * 0.85)
+					return
+		else: # current and previous areas match
+			match drag_area:
+				TOUCH_AREA_NONE: return
+				TOUCH_AREA_DRAG:
+					get_parent().get_node("hud/turn-indicator").offset = Vector2(event.position.x, screensize.y * 0.85)
+					if (drag_relative_x < 0): # left
+						array_touch_state[drag_index] = TOUCH_DRAG_LEFT
+					elif (drag_relative_x > 0): # right
+						array_touch_state[drag_index] = TOUCH_DRAG_RIGHT
+					else: # no movement
+						array_touch_state[drag_index] = TOUCH_IDLE
+					return
+				TOUCH_AREA_FIRE:
+					get_parent().get_node("hud/fire-indicator").offset = Vector2(event.position.x, screensize.y * 0.85)
+					return
+				TOUCH_AREA_THRUST:
+					get_parent().get_node("hud/thrust-indicator").offset = Vector2(event.position.x, screensize.y * 0.85)
+					return
 	elif (event.get_class() == "InputEventScreenTouch" && player_shown):
 		var index = event.get_index()
 		var position = event.position
-		if position.y < (screensize.y * 0.66):
-			array_touch_area[index] = TOUCH_AREA_FIRE
-		elif position.x > (screensize.x/2):
-			array_touch_area[index] = TOUCH_AREA_THRUST
-		else:
-			array_touch_area[index] = TOUCH_AREA_NONE
-
+		
 		if (index >= TOUCH_MAX):
 			return
+
+		array_touch_area[index] = get_drag_area(position)
+
 		if (event.pressed): # down
 			match array_touch_area[index]:
-				TOUCH_AREA_THRUST:
-					array_touch_state[index] = TOUCH_THRUST_ON
+				TOUCH_AREA_DRAG:
+					get_parent().get_node("hud/turn-indicator").offset = Vector2(position.x, screensize.y * 0.85)
 				TOUCH_AREA_FIRE:
 					array_touch_state[index] = TOUCH_FIRE
+					get_parent().get_node("hud/fire-indicator").offset = Vector2(position.x, screensize.y * 0.85)
+				TOUCH_AREA_THRUST:
+					array_touch_state[index] = TOUCH_THRUST_ON
+					get_parent().get_node("hud/thrust-indicator").offset = Vector2(position.x, screensize.y * 0.85)
 		else: # up; ignore player visibility
 			match array_touch_area[index]:
+				TOUCH_AREA_DRAG:
+					array_touch_state[index] = TOUCH_IDLE
+					get_parent().get_node("hud/turn-indicator").offset = Vector2(screensize.x * 0.25, screensize.y * 0.85)
+				TOUCH_AREA_FIRE:
+					array_touch_state[index] = TOUCH_IDLE
+					get_parent().get_node("hud/fire-indicator").offset = Vector2(screensize.x * 0.625, screensize.y * 0.85)
 				TOUCH_AREA_THRUST:
 					array_touch_state[index] = TOUCH_THRUST_OFF
+					get_parent().get_node("hud/thrust-indicator").offset = Vector2(screensize.x * 0.875, screensize.y * 0.85)
 				_:
 					array_touch_state[index] = TOUCH_IDLE
 	
@@ -190,9 +232,9 @@ func _unhandled_input(event):
 		# Use the mouse wheel to turn
 		if (event.pressed):
 			if event.button_index == BUTTON_WHEEL_UP:
-				turn_left(ROTATION_STEP * 3)
-			elif event.button_index == BUTTON_WHEEL_DOWN:
 				turn_right(ROTATION_STEP * 3)
+			elif event.button_index == BUTTON_WHEEL_DOWN:
+				turn_left(ROTATION_STEP * 3)
 
 func _process(delta):
 	get_input()
@@ -272,6 +314,8 @@ func explode():
 		return
 	exploding = true
 
+	global.set_engine_sound_off()
+
 	# ensure ship stops here
 	gravity_scale = 0.0
 	linear_velocity = Vector2()
@@ -301,7 +345,6 @@ func explode():
 		global.lives = global.LIVES_MAX
 		global.score = 0
 		game_over = true
-	
 
 	var animation = get_node("explosion")
 	var sprite = animation.get_node("Sprite")
@@ -322,3 +365,14 @@ func play_sound_once(s):
 		return
 	record[s] = true
 	get_parent().get_node(s).play()
+
+# enum {TOUCH_AREA_NONE, TOUCH_AREA_FIRE, TOUCH_AREA_DRAG, TOUCH_AREA_THRUST}
+func get_drag_area(pos):
+	if pos.y < screensize.y * 0.7:
+		return TOUCH_AREA_NONE
+	elif pos.x < screensize.x * 0.5:
+		return TOUCH_AREA_DRAG
+	elif pos.x < screensize.x * 0.75:
+		return TOUCH_AREA_FIRE
+	else:
+		return TOUCH_AREA_THRUST

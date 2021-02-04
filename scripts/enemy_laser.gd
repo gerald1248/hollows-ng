@@ -5,7 +5,7 @@ var velocity = Vector2()
 var from = Vector2()
 var to = Vector2()
 var deactivated = false
-onready var ttl = 50
+onready var ttl = 80
 
 func _ready():
 	velocity = VELOCITY_MULTIPLIER * (to - from).normalized()

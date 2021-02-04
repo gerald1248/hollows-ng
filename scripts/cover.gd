@@ -15,4 +15,4 @@ func _ready():
 func _draw():
 	# iPad _only_ requires a y-adjustment to the line drawn
 	# 30 seems to be a workable offset
-	draw_line($player.get_global_position(), $weight.get_global_position(), Color.white, 4, false)
+	draw_line($player.get_global_position(), $weight.get_global_position(), Color.white, 2, false)

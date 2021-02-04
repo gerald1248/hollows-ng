@@ -3,7 +3,7 @@ extends Area2D
 const VELOCITY_MULTIPLIER = 250
 onready var player = get_node("/root/main/player")
 onready var velocity = Vector2(VELOCITY_MULTIPLIER * cos(player.rotation), VELOCITY_MULTIPLIER * sin(player.rotation)) + player.linear_velocity
-onready var ttl = 50
+onready var ttl = 80
 var deactivated = false
 
 func _process(delta):

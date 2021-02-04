@@ -12,6 +12,7 @@ radius = 2.74601
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.254902, 0.211765, 1 )
 texture = ExtResource( 2 )
 vframes = 2
 

@@ -20,11 +20,9 @@ func _ready():
 		get_node("/root/main/hud/vbox/topbar/").move_child(n, 3)
 		idx += 1
 	get_node("/root/main/hud/vbox/topbar/righttemplate").hide()
+
 	# training
 	if global.level_index == 0:
-		get_node("training-fire").show()
-		get_node("training-turn").show()
-		get_node("training-thrust").show()
 		get_node("training-fire-rect").show()
 		get_node("training-turn-rect").show()
 		get_node("training-thrust-rect").show()
@@ -33,35 +31,43 @@ func _ready():
 func layout(size):
 	$vbox.rect_size = size
 
-	$"training-fire".rect_size.x = size.x
-	$"training-fire".rect_size.y = size.y * 0.67
-
-	$"training-turn".rect_size.x = size.x/2
-	$"training-turn".rect_size.y = size.y * 0.33
-	$"training-turn".rect_position.y = size.y * 0.67
-
-	$"training-thrust".rect_size.x = size.x/2
-	$"training-thrust".rect_size.y = size.y * 0.33
-	$"training-thrust".rect_position.x = size.x/2
-	$"training-thrust".rect_position.y = size.y * 0.67
-
-	$"training-fire-rect".rect_size.x = size.x
-	$"training-fire-rect".rect_size.y = size.y * 0.66
-	$"training-fire-rect".rect_pivot_offset.x = size.x/2
-	$"training-fire-rect".rect_pivot_offset.y = size.y * 0.33
+	# adjust size of indicators; they appear v. large in landscape
+	#if size.x > size.y:
+	#	get_node("turn-indicator").scale = Vector2(0.75, 0.75)
+	#	get_node("fire-indicator").scale = Vector2(0.75, 0.75)
+	#	get_node("thrust-indicator").scale = Vector2(0.75, 0.75)
+	#else:
+	#	get_node("turn-indicator").scale = Vector2(1.0, 1.0)
+	#	get_node("fire-indicator").scale = Vector2(1.0, 1.0)
+	#	get_node("thrust-indicator").scale = Vector2(1.0, 1.0)
 
 	$"training-turn-rect".rect_size.x = size.x/2
-	$"training-turn-rect".rect_size.y = size.y * 0.33
-	$"training-turn-rect".rect_position.y = size.y * 0.66
+	$"training-turn-rect".rect_size.y = size.y * 0.3	
+	$"training-turn-rect".rect_position.x = 0.0
+	$"training-turn-rect".rect_position.y = size.y * 0.7
 	$"training-turn-rect".rect_pivot_offset.x = size.x/4
-	$"training-turn-rect".rect_pivot_offset.y = size.y * 0.165
+	$"training-turn-rect".rect_pivot_offset.y = size.y * 0.15
 
-	$"training-thrust-rect".rect_size.x = size.x/2
-	$"training-thrust-rect".rect_size.y = size.y * 0.33
-	$"training-thrust-rect".rect_position.x = size.x/2
-	$"training-thrust-rect".rect_position.y = size.y * 0.66
-	$"training-thrust-rect".rect_pivot_offset.x = size.x/4
-	$"training-thrust-rect".rect_pivot_offset.y = size.y * 0.165
+	$"training-fire-rect".rect_size.x = size.x * 0.25
+	$"training-fire-rect".rect_size.y = size.y * 0.3
+	$"training-fire-rect".rect_position.x = size.x * 0.5
+	$"training-fire-rect".rect_position.y = size.y * 0.7
+	$"training-fire-rect".rect_pivot_offset.x = size.x/8
+	$"training-fire-rect".rect_pivot_offset.y = size.y * 0.15
+
+	$"training-thrust-rect".rect_size.x = size.x * 0.25
+	$"training-thrust-rect".rect_size.y = size.y * 0.3
+	$"training-thrust-rect".rect_position.x = size.x * 0.75
+	$"training-thrust-rect".rect_position.y = size.y * 0.7
+	$"training-thrust-rect".rect_pivot_offset.x = size.x/8
+	$"training-thrust-rect".rect_pivot_offset.y = size.y * 0.15
+
+	$"turn-indicator".offset.x = size.x/4
+	$"turn-indicator".offset.y = size.y * 0.85
+	$"fire-indicator".offset.x = size.x/2 + size.x/8
+	$"fire-indicator".offset.y = size.y * 0.85
+	$"thrust-indicator".offset.x = size.x - size.x/8
+	$"thrust-indicator".offset.y = size.y * 0.85
 
 	$credits.rect_position.y = size.y/2 + 16
 	$credits.rect_size.x = size.x

@@ -7,6 +7,7 @@
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.862745, 0, 1 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4

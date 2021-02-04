@@ -20,6 +20,7 @@ func _ready():
 	update_button_labels()
 	rng.randomize()
 	rand = rng.randf_range(0.0, 1.0)
+	global.set_engine_sound_off()
 	
 	set_screensize()
 	
@@ -63,6 +64,7 @@ func _on_skip_button_pressed():
 func _on_fx_button_pressed():
 	global.fx = !global.fx
 	update_button_labels()
+	global.set_fx(global.fx)
 	global.save_config()
 
 func _on_music_button_pressed():
@@ -81,9 +83,11 @@ func _notification(what):
 				update_player_position(screensize.x)
 
 func _on_credits_button_button_down():
-	var font_size = 3.0 if screensize.x > screensize.y else 4.0
+	#var font_size = 3.0 if screensize.x > screensize.y else 4.0
 	$credits_dialog.get_close_button().hide()
 	$credits_dialog.set_text(global.CREDITS_FULL)
-	$credits_dialog.theme.default_font.set("size", font_size)
-	$credits_dialog.popup_centered_ratio(0.8)
-	$credits_dialog.show()
+	#$credits_dialog.theme.default_font.set("size", font_size)
+	#$credits_dialog.popup_centered_ratio(0.8)
+	
+	#$credits_dialog.show()
+	$credits_dialog.popup_centered_minsize()

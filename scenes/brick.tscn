@@ -7,6 +7,7 @@
 extents = Vector2( 8, 8 )
 
 [node name="brick" type="Area2D"]
+modulate = Color( 1, 0.862745, 0, 1 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,6 +18,5 @@ texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
 frame = 11
-
 [connection signal="area_entered" from="." to="." method="_on_brick_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_brick_body_entered"]

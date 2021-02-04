@@ -10,7 +10,8 @@ Richard Strauss, Blue Danube, European Archive, CC0 1.0
 Sound effects by @Shades, CC0 1.0
 
 Explosions by Akimasa Shimobayashi, CC BY 3.0
-(changed size and mode)
+
+Background by Westbeam, CC0 1.0
 
 Mouse support by FranchuFranchu
 
@@ -27,7 +28,7 @@ github.com/gerald1248/hollows-ng
 var lives = LIVES_MAX
 var level_index = 0 # 0 for training mission
 var level_count = 7
-var fx = false
+var fx = true
 var music = false
 var score = 0
 var highscore = 0
@@ -43,10 +44,13 @@ var hud_padding
 const random_array = [ 0.0, 0.6, 0.2, 0.1, 0.3, 0.9, 1.0, 0.8, 0.4, 0.5, 0.7 ]
 var random_array_size = random_array.size()
 var random_array_index = 0
+var white_noise_max_volume = -35.0
+var white_noise_min_volume = -80.0
 
 func _ready():
 	load_config()
 	set_music(music)
+	set_fx(fx)
 	safe_area = OS.get_window_safe_area()
 	safe_area_position = Vector2(safe_area.position.x/4, safe_area.position.y/4)
 	safe_area_size = Vector2(safe_area.size.x/4, safe_area.size.y/4)	
@@ -94,6 +98,21 @@ func set_music(b):
 			node.play()
 		false:
 			node.stop()
+
+func set_fx(b):
+	var node = get_node("white-noise")
+	match b:
+		true:
+			node.volume_db = -80.0
+			node.play()
+		false:
+			node.stop()
+
+func set_engine_sound_on():
+	get_node("white-noise").volume_db = white_noise_max_volume
+
+func set_engine_sound_off():
+	get_node("white-noise").volume_db = white_noise_min_volume
 
 func set_highscore(new_value):
 	highscore = new_value
