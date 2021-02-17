@@ -218,7 +218,7 @@ tracks/5/keys = {
 }
 
 [sub_resource type="DynamicFont" id=8]
-size = 6
+size = 4
 font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=9]
@@ -405,14 +405,13 @@ anims/training = SubResource( 7 )
 
 [node name="credits" type="Label" parent="hud"]
 visible = false
-margin_top = 110.0
-margin_right = 320.0
-margin_bottom = 152.0
+margin_right = 300.0
+margin_bottom = 60.0
 custom_fonts/font = SubResource( 8 )
-custom_colors/font_color = Color( 1, 0.862745, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "CREDITS
 Based on Thrust by Jeremy C. Smith, Firebird, 1986
-Richard Strauss, Blue Danube, European Archive, CC
+Soundtrack The Adventure Lights by Skip Cloud, CC
 Sound effects by @Shades, CC
 Explosions by Akimasa Shimobayashi, CC
 Godot Engine by Juan Linietsky, Ariel Manzur and

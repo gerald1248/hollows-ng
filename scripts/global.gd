@@ -5,7 +5,8 @@ const LIVES_MAX = 4
 const TILE_LENGTH = 16
 const DEBUG_SCREEN_RESOLUTION = false
 const CREDITS_FULL = """
-Richard Strauss, Blue Danube, European Archive, CC0 1.0
+
+Soundtrack The Adventure Lights by Skip Cloud, CCA 3.0
 
 Sound effects by @Shades, CC0 1.0
 
@@ -29,7 +30,7 @@ var lives = LIVES_MAX
 var level_index = 0 # 0 for training mission
 var level_count = 7
 var fx = true
-var music = false
+var music = true
 var score = 0
 var highscore = 0
 var safe_area
@@ -92,7 +93,7 @@ func set_viewport_size(v2):
 	viewport_size = v2
 
 func set_music(b):
-	var node = get_node("blue-danube")
+	var node = get_node("music")
 	match b:
 		true:
 			node.play()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/The_Adventure_Lights.ogg-4f4291bd68055dc788c4016c50a65f43.oggstr"
+
+[deps]
+
+source_file="res://media/The_Adventure_Lights.ogg"
+dest_files=[ "res://.import/The_Adventure_Lights.ogg-4f4291bd68055dc788c4016c50a65f43.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
