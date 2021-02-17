@@ -483,15 +483,15 @@ volume_db = -25.0
 
 [node name="sample-explosion-weight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
-volume_db = -20.0
+volume_db = -25.0
 
 [node name="sample-explosion-surface" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 22 )
-volume_db = -20.0
+volume_db = -25.0
 
 [node name="sample-enemy-laser" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 23 )
-volume_db = -25.0
+volume_db = -30.0
 
 [node name="sample-fly" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 24 )

@@ -31,16 +31,6 @@ func _ready():
 func layout(size):
 	$vbox.rect_size = size
 
-	# adjust size of indicators; they appear v. large in landscape
-	#if size.x > size.y:
-	#	get_node("turn-indicator").scale = Vector2(0.75, 0.75)
-	#	get_node("fire-indicator").scale = Vector2(0.75, 0.75)
-	#	get_node("thrust-indicator").scale = Vector2(0.75, 0.75)
-	#else:
-	#	get_node("turn-indicator").scale = Vector2(1.0, 1.0)
-	#	get_node("fire-indicator").scale = Vector2(1.0, 1.0)
-	#	get_node("thrust-indicator").scale = Vector2(1.0, 1.0)
-
 	$"training-turn-rect".rect_size.x = size.x/2
 	$"training-turn-rect".rect_size.y = size.y * 0.3	
 	$"training-turn-rect".rect_position.x = 0.0
