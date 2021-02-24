@@ -6,7 +6,7 @@
 [ext_resource path="res://sprites/ship-green.png" type="Texture" id=4]
 [ext_resource path="res://sprites/light.png" type="Texture" id=5]
 [ext_resource path="res://sprites/weight-green.png" type="Texture" id=6]
-[ext_resource path="res://sprites/background-smaller.png" type="Texture" id=7]
+[ext_resource path="res://sprites/background.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -63,15 +63,15 @@ __meta__ = {
 }
 
 [node name="hbox_title" type="HBoxContainer" parent="vbox"]
-margin_top = 25.0
-margin_right = 256.0
-margin_bottom = 41.0
+margin_top = 109.0
+margin_right = 640.0
+margin_bottom = 125.0
 alignment = 1
 
 [node name="title" type="Label" parent="vbox/hbox_title"]
 modulate = Color( 0.498039, 0.858824, 1, 1 )
-margin_left = 72.0
-margin_right = 184.0
+margin_left = 264.0
+margin_right = 376.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.666667, 0.666667, 0.666667, 1 )
@@ -80,9 +80,9 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="hbox_player" type="HBoxContainer" parent="vbox"]
-margin_top = 61.0
-margin_right = 256.0
-margin_bottom = 81.0
+margin_top = 145.0
+margin_right = 640.0
+margin_bottom = 165.0
 rect_min_size = Vector2( 0, 20 )
 size_flags_horizontal = 3
 alignment = 1
@@ -107,62 +107,62 @@ width = 1.25
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="hbox_start" type="HBoxContainer" parent="vbox"]
-margin_top = 101.0
-margin_right = 256.0
-margin_bottom = 113.0
+margin_top = 185.0
+margin_right = 640.0
+margin_bottom = 197.0
 alignment = 1
 
 [node name="start_button" type="Button" parent="vbox/hbox_start"]
-margin_left = 107.0
-margin_right = 149.0
+margin_left = 299.0
+margin_right = 341.0
 margin_bottom = 12.0
 custom_fonts/font = SubResource( 2 )
 text = "Start"
 
 [node name="hbox_controls" type="HBoxContainer" parent="vbox"]
-margin_top = 133.0
-margin_right = 256.0
-margin_bottom = 143.0
+margin_top = 217.0
+margin_right = 640.0
+margin_bottom = 227.0
 custom_constants/separation = 10
 alignment = 1
 
 [node name="credits_button" type="Button" parent="vbox/hbox_controls"]
-margin_left = 21.0
-margin_right = 61.0
+margin_left = 213.0
+margin_right = 253.0
 margin_bottom = 10.0
 custom_fonts/font = SubResource( 3 )
 text = "Credits"
 
 [node name="fx_button" type="Button" parent="vbox/hbox_controls"]
-margin_left = 71.0
-margin_right = 103.0
+margin_left = 263.0
+margin_right = 295.0
 margin_bottom = 10.0
 custom_fonts/font = SubResource( 4 )
 text = "FX ON"
 
 [node name="music_button" type="Button" parent="vbox/hbox_controls"]
-margin_left = 113.0
-margin_right = 161.0
+margin_left = 305.0
+margin_right = 353.0
 margin_bottom = 10.0
 custom_fonts/font = SubResource( 5 )
 text = "Music OFF"
 
 [node name="skip_button" type="Button" parent="vbox/hbox_controls"]
-margin_left = 171.0
-margin_right = 235.0
+margin_left = 363.0
+margin_right = 427.0
 margin_bottom = 10.0
 custom_fonts/font = SubResource( 6 )
 text = "Skip training"
 
 [node name="hbox_footer" type="HBoxContainer" parent="vbox"]
-margin_top = 163.0
-margin_right = 256.0
-margin_bottom = 167.0
+margin_top = 247.0
+margin_right = 640.0
+margin_bottom = 251.0
 alignment = 1
 
 [node name="footer" type="Label" parent="vbox/hbox_footer"]
-margin_left = 128.0
-margin_right = 128.0
+margin_left = 320.0
+margin_right = 320.0
 margin_bottom = 4.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.862745, 0, 1 )

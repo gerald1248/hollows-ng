@@ -5,8 +5,15 @@ var alertCount = 0
 func _ready():
 	$vbox.rect_position = Vector2()
 	$vbox.rect_size = global.viewport_size
-	get_node("vbox/topbar/padding-left").rect_min_size = Vector2(global.hud_padding, 0)
-	get_node("vbox/topbar/padding-right").rect_min_size = Vector2(global.hud_padding, 0)
+
+	if global.is_iphone_x:
+		get_node("vbox/topbar/padding-left").rect_min_size = Vector2(global.hud_padding, 0)
+		get_node("vbox/topbar/padding-right").rect_min_size = Vector2(global.hud_padding, 0)
+		get_node("vbox/padding-top").rect_min_size = Vector2(0.0, global.hud_padding)
+	else:
+		get_node("vbox/topbar/padding-left").hide()
+		get_node("vbox/topbar/padding-right").hide()
+		get_node("vbox/padding-top").hide()
 
 	layout(get_viewport().get_visible_rect().size)
 	update_score(global.score)
@@ -22,11 +29,19 @@ func _ready():
 	get_node("/root/main/hud/vbox/topbar/righttemplate").hide()
 
 	# training
-	if global.level_index == 0:
+	if global.level_index == 0 && !global.is_desktop:
 		get_node("training-fire-rect").show()
 		get_node("training-turn-rect").show()
 		get_node("training-thrust-rect").show()
-		get_node("training-animation").play("training")	
+		get_node("training-animation").play("training")
+	
+	# desktop
+	if global.is_desktop:
+		$"turn-indicator".hide()
+		$"fire-indicator".hide()
+		$"thrust-indicator".hide()
+		if global.level_index == 0:
+			$"desktop-training".show()
 
 func layout(size):
 	$vbox.rect_size = size
@@ -61,8 +76,18 @@ func layout(size):
 
 	$credits.rect_position.y = size.y/2 + 16
 	$credits.rect_size.x = size.x
+	$"desktop-training".rect_position.y = size.y/2 + 16
+	$"desktop-training".rect_size.x = size.x
 	$"continue-container".rect_position.x = size.x/2 - 60
 	$"continue-container".rect_position.y = size.y/2 - 8
+	
+	# if landscape *and* iPhone X, hide top padding
+	if global.is_iphone_x:
+		if size.x > size.y:
+			get_node("vbox/padding-top").hide()
+		else:
+			get_node("vbox/padding-top").show()
+
 
 func alert(s):
 	alertCount = 100

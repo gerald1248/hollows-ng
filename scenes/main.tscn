@@ -9,7 +9,7 @@
 [ext_resource path="res://sprites/explosion-64x64.png" type="Texture" id=7]
 [ext_resource path="res://scripts/weight.gd" type="Script" id=8]
 [ext_resource path="res://sprites/weight-green.png" type="Texture" id=9]
-[ext_resource path="res://sprites/background-smaller.png" type="Texture" id=10]
+[ext_resource path="res://sprites/background.png" type="Texture" id=10]
 [ext_resource path="res://scripts/hud.gd" type="Script" id=11]
 [ext_resource path="res://fonts/PressStart2P.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://sprites/ship-aaa.png" type="Texture" id=13]
@@ -314,9 +314,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="topbar" type="HBoxContainer" parent="hud/vbox"]
+[node name="padding-top" type="HBoxContainer" parent="hud/vbox"]
 margin_right = 40.0
-margin_bottom = 8.0
+
+[node name="topbar" type="HBoxContainer" parent="hud/vbox"]
+margin_top = 4.0
+margin_right = 40.0
+margin_bottom = 12.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 
@@ -361,9 +365,9 @@ margin_right = 40.0
 margin_bottom = 8.0
 
 [node name="alertbar" type="HBoxContainer" parent="hud/vbox"]
-margin_top = 12.0
+margin_top = 16.0
 margin_right = 40.0
-margin_bottom = 20.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 alignment = 1
 
@@ -416,6 +420,17 @@ Sound effects by @Shades, CC
 Explosions by Akimasa Shimobayashi, CC
 Godot Engine by Juan Linietsky, Ariel Manzur and
 Godot Engine Contributors, MIT"
+align = 1
+
+[node name="desktop-training" type="Label" parent="hud"]
+visible = false
+margin_right = 300.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Thrust..............UP
+Turn........LEFT/RIGHT
+Fire.............SPACE"
 align = 1
 
 [node name="continue-container" type="VBoxContainer" parent="hud"]

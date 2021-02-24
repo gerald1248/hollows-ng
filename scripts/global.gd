@@ -26,6 +26,7 @@ Hollows is free to copy and modify at:
 github.com/gerald1248/hollows-ng
 """
 
+const notch_padding = 12.5
 var lives = LIVES_MAX
 var level_index = 0 # 0 for training mission
 var level_count = 7
@@ -41,6 +42,7 @@ var is_ios
 var is_ipad
 var is_iphone_x
 var is_android
+var is_desktop
 var hud_padding
 const random_array = [ 0.0, 0.6, 0.2, 0.1, 0.3, 0.9, 1.0, 0.8, 0.4, 0.5, 0.7 ]
 var random_array_size = random_array.size()
@@ -57,12 +59,16 @@ func _ready():
 	safe_area_size = Vector2(safe_area.size.x/4, safe_area.size.y/4)	
 	viewport_size = get_viewport().get_visible_rect().size
 	
-	hud_padding = safe_area_position.x
-
 	is_ios = OS.get_name() == "iOS"
 	is_ipad = is_ios && viewport_size.x/viewport_size.y < 1.34
-	is_iphone_x = is_ios && viewport_size.x/viewport_size.y > 1.8
+	is_iphone_x = is_ios && max(viewport_size.x, viewport_size.y)/min(viewport_size.x, viewport_size.y) > 1.8
 	is_android = OS.get_name() == "Android"
+	is_desktop = !is_ios && !is_android
+	
+	hud_padding = notch_padding if is_iphone_x else 0.0
+	
+	if !is_desktop:
+		return
 
 func flip_vector2(v2):
 	return Vector2(v2.y, v2.x)
