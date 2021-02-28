@@ -77,17 +77,18 @@ func _notification(what):
 	match (what):
 		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 			get_tree().quit()
+		MainLoop.NOTIFICATION_WM_ABOUT:
+			show_credits()
 		NOTIFICATION_RESIZED: # fires before _ready()
 			if is_ready:
 				set_screensize()
 				update_player_position(screensize.x)
 
-func _on_credits_button_button_down():
-	#var font_size = 3.0 if screensize.x > screensize.y else 4.0
+func show_credits():
 	$credits_dialog.get_close_button().hide()
 	$credits_dialog.set_text(global.CREDITS_FULL)
-	#$credits_dialog.theme.default_font.set("size", font_size)
-	#$credits_dialog.popup_centered_ratio(0.8)
-	
-	#$credits_dialog.show()
+	$credits_dialog.set_as_toplevel(true)
 	$credits_dialog.popup_centered_minsize()
+
+func _on_credits_button_button_down():
+	show_credits()

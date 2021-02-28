@@ -15,6 +15,15 @@ func _notification(what):
 			pause()
 		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 			get_tree().quit()
+		MainLoop.NOTIFICATION_WM_ABOUT:
+			show_credits()
+
+func show_credits():
+	var dialog = get_node("hud/credits_dialog")
+	dialog.get_close_button().hide()
+	dialog.set_text(global.CREDITS_FULL)
+	dialog.set_as_toplevel(true)
+	dialog.popup_centered_minsize()
 
 func pause():
 	get_node("hud/continue-container").show()

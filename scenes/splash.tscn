@@ -63,15 +63,15 @@ __meta__ = {
 }
 
 [node name="hbox_title" type="HBoxContainer" parent="vbox"]
-margin_top = 109.0
-margin_right = 640.0
-margin_bottom = 125.0
+margin_top = 79.0
+margin_right = 512.0
+margin_bottom = 95.0
 alignment = 1
 
 [node name="title" type="Label" parent="vbox/hbox_title"]
 modulate = Color( 0.498039, 0.858824, 1, 1 )
-margin_left = 264.0
-margin_right = 376.0
+margin_left = 200.0
+margin_right = 312.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.666667, 0.666667, 0.666667, 1 )
@@ -80,9 +80,9 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="hbox_player" type="HBoxContainer" parent="vbox"]
-margin_top = 145.0
-margin_right = 640.0
-margin_bottom = 165.0
+margin_top = 115.0
+margin_right = 512.0
+margin_bottom = 135.0
 rect_min_size = Vector2( 0, 20 )
 size_flags_horizontal = 3
 alignment = 1
@@ -107,62 +107,62 @@ width = 1.25
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="hbox_start" type="HBoxContainer" parent="vbox"]
-margin_top = 185.0
-margin_right = 640.0
-margin_bottom = 197.0
+margin_top = 155.0
+margin_right = 512.0
+margin_bottom = 167.0
 alignment = 1
 
 [node name="start_button" type="Button" parent="vbox/hbox_start"]
-margin_left = 299.0
-margin_right = 341.0
+margin_left = 235.0
+margin_right = 277.0
 margin_bottom = 12.0
 custom_fonts/font = SubResource( 2 )
 text = "Start"
 
 [node name="hbox_controls" type="HBoxContainer" parent="vbox"]
-margin_top = 217.0
-margin_right = 640.0
-margin_bottom = 227.0
+margin_top = 187.0
+margin_right = 512.0
+margin_bottom = 197.0
 custom_constants/separation = 10
 alignment = 1
 
 [node name="credits_button" type="Button" parent="vbox/hbox_controls"]
-margin_left = 213.0
-margin_right = 253.0
+margin_left = 149.0
+margin_right = 189.0
 margin_bottom = 10.0
 custom_fonts/font = SubResource( 3 )
 text = "Credits"
 
 [node name="fx_button" type="Button" parent="vbox/hbox_controls"]
-margin_left = 263.0
-margin_right = 295.0
+margin_left = 199.0
+margin_right = 231.0
 margin_bottom = 10.0
 custom_fonts/font = SubResource( 4 )
 text = "FX ON"
 
 [node name="music_button" type="Button" parent="vbox/hbox_controls"]
-margin_left = 305.0
-margin_right = 353.0
+margin_left = 241.0
+margin_right = 289.0
 margin_bottom = 10.0
 custom_fonts/font = SubResource( 5 )
 text = "Music OFF"
 
 [node name="skip_button" type="Button" parent="vbox/hbox_controls"]
-margin_left = 363.0
-margin_right = 427.0
+margin_left = 299.0
+margin_right = 363.0
 margin_bottom = 10.0
 custom_fonts/font = SubResource( 6 )
 text = "Skip training"
 
 [node name="hbox_footer" type="HBoxContainer" parent="vbox"]
-margin_top = 247.0
-margin_right = 640.0
-margin_bottom = 251.0
+margin_top = 217.0
+margin_right = 512.0
+margin_bottom = 221.0
 alignment = 1
 
 [node name="footer" type="Label" parent="vbox/hbox_footer"]
-margin_left = 320.0
-margin_right = 320.0
+margin_left = 256.0
+margin_right = 256.0
 margin_bottom = 4.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.862745, 0, 1 )
@@ -176,7 +176,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 9 )
 popup_exclusive = true
-window_title = "Credits"
+window_title = "Hollows"
 
 [node name="starfield" type="Sprite" parent="."]
 show_behind_parent = true
